@@ -1,4 +1,6 @@
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package model;
+
+import exception.InvalidFormatException;
 
 /**
  * Created by AsusIT on 24.07.2017.

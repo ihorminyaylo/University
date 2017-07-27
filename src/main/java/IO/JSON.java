@@ -1,6 +1,8 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
+package IO;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.Student;
 
 
 import java.io.File;
@@ -21,6 +23,6 @@ public class JSON {
                 new ObjectMapper().readValue(new File(filepath), new TypeReference<ArrayList<Student>>() {});
         return userList;
         /*return filepath.endsWith(".txt") ?
-                new ObjectMapper().readValue(new File(filepath), new TypeReference<ArrayList<Student>>() {}) : new ArrayList<>();*/
+                new ObjectMapper().readValue(new File(filepath), new TypeReference<ArrayList<model.Student>>() {}) : new ArrayList<>();*/
     }
 }

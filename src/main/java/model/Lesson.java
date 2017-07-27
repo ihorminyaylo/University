@@ -1,11 +1,12 @@
+package model;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import exception.InvalidFormatException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Created by AsusIT on 24.07.2017.
@@ -49,7 +50,7 @@ public class Lesson {
 
     @Override
     public String toString() {
-        return "Subject - " + subject + ". Date : " + timeClass;
+        return "model.Subject - " + subject + ". Date : " + timeClass;
     }
 
     @Override

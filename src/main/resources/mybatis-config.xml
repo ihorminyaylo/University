@@ -9,9 +9,9 @@
       <transactionManager type="JDBC"/>
       <dataSource type="UNPOOLED">
         <property name="driver"                           value="org.postgresql.Driver"/>
-        <property name="url"                              value="jdbc:postgresql://localhost:5432/test_db"/>
-        <property name="username"                         value="root"/>
-        <property name="password"                         value="root"/>
+        <property name="url"                              value="jdbc:postgresql://localhost:5432/postgres"/>
+        <property name="username"                         value="postgres"/>
+        <property name="password"                         value="postgres"/>
         <!-- set transaction isolation level to 2, TRANSACTION_READ_COMMITTED, PostgreSQL's default -->
         <property name="defaultTransactionIsolationLevel" value="2"/>
         <!-- set pg_stat_activity.application_name for this connection -->
@@ -20,6 +20,6 @@
     </environment>
   </environments>
   <mappers><!--в данном блоке необходимо описать маперы, которые используются в проекте-->
-    <mapper class="StudentMapper"/>
+    <mapper class="mapper.StudentMapper"/>
   </mappers>
 </configuration>

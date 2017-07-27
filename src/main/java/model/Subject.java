@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Created by AsusIT on 24.07.2017.
  */

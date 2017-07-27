@@ -1,5 +1,6 @@
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+package model;
+
+import exception.InvalidFormatException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,12 @@ public class Student {
     }
 
     public Student() {
+    }
+
+    public Student(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     @Override
