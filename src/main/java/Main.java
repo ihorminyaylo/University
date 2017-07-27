@@ -5,6 +5,8 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import service.MarkServices;
+import servicesDB.StudentServiceDB;
+import servicesDB.SubjectServiceDB;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -71,7 +73,7 @@ public class Main {
 //        System.out.println("Lessons(dates) of model.Subject - " + journal.getLessonsOfSubject(Subject.English));
 
 
-        SqlSessionFactory sqlSessionFactory;
+        /*SqlSessionFactory sqlSessionFactory;
         StudentMapper studentMapper;
         Reader reader = null;
         try {
@@ -80,14 +82,26 @@ public class Main {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
             studentMapper = sqlSessionFactory.openSession().getMapper(StudentMapper.class);
             //List<model.Student> studentDB = studentMapper.getStudent();
+            // get student
             Student s = studentMapper.getStudentById(1);
             List<Student> students = studentMapper.getStudent();
             System.out.println(s);
             System.out.println(students);
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
+        }*/
+        /*StudentServiceDB studentServiceDB = new StudentServiceDB();
+        System.out.println(studentServiceDB.getAllStudents());*/
+        /*Student student = new Student();
+        student.setFirstName("Var");
+        student.setLastName("Mar");
+        StudentServiceDB studentServiceDB = new StudentServiceDB();
+        studentServiceDB.createStudent(student);*/
+        /*SubjectServiceDB subjectServiceDB = new SubjectServiceDB();
+        System.out.println(subjectServiceDB.getSubjectById(1));
+        *//*SubjectServiceDB subjectServiceDB = new SubjectServiceDB();
+        subjectServiceDB.createSubject(new Subject("Anglishsss"));*/
     }
 
     }

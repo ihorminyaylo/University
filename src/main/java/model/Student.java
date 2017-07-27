@@ -21,7 +21,7 @@ public class Student {
     public int getId() {
         return id;
     }
-    public void setId() {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -68,8 +68,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String firstName, String lastName) {
-        this.id = id;
+    public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

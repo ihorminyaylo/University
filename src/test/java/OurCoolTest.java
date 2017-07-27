@@ -28,10 +28,12 @@ public class OurCoolTest {
         student.setLastName("Vizer-Ass");
     }
 
+
     @Test
     public void testCorrectAverageScoreBySubject() throws InvalidFormatException {
         Lesson lesson = new Lesson();
-        lesson.setSubject(Subject.English);
+        Subject subject = new Subject("English");
+        lesson.setSubject(subject);
         lesson.setTimeClass(LocalDate.of(2017,5,25));
         MarkServices markServices = new MarkServices();
         Student student1 = new Student();
@@ -43,7 +45,7 @@ public class OurCoolTest {
         List<Student> list = new ArrayList<>();
         Journal journal = new Journal();
         journal.setListMarks(list);
-        double average = journal.getAverageMarkForSubject(Subject.English);
+        double average = journal.getAverageMarkForSubject(subject);
         Assert.assertEquals(average, 95);
     }
 }
