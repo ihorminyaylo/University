@@ -6,8 +6,17 @@ import exception.InvalidFormatException;
  * Created by AsusIT on 24.07.2017.
  */
 public class Mark {
+    private int idMark;
     private Lesson lesson;
     private double score;
+
+    public int getIdMark() {
+        return idMark;
+    }
+
+    public void setIdMark(int idMark) {
+        this.idMark = idMark;
+    }
 
     public Lesson getLesson() {
         return lesson;
@@ -39,6 +48,6 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "Date - " + lesson.getSubject() + ", time - " + lesson.getTimeClass() + ", score - " + score;
+        return "Date - " + lesson.getSubject() + ", time - " + lesson.getDate() + ", score - " + score;
     }
 }

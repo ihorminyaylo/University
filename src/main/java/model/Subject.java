@@ -19,12 +19,18 @@ public class Subject {
         return subjectName;
     }
 
-    public void setSubjectName(String nameSubject) {
+    public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
     }
+
+    public Subject() {}
 
     public Subject(String subjectName) {
         this.subjectName = subjectName;
     }
 
+    @Override
+    public String toString() {
+        return "Subject name - " + subjectName;
+    }
 }

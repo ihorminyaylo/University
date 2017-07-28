@@ -34,7 +34,7 @@ public class OurCoolTest {
         Lesson lesson = new Lesson();
         Subject subject = new Subject("English");
         lesson.setSubject(subject);
-        lesson.setTimeClass(LocalDate.of(2017,5,25));
+        lesson.setDate(LocalDate.of(2017,5,25));
         MarkServices markServices = new MarkServices();
         Student student1 = new Student();
         markServices.setStudent(student1);

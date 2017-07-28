@@ -1,11 +1,11 @@
 package model;
 
-import exception.InvalidFormatException;
+        import exception.InvalidFormatException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.regex.Matcher;
+        import java.util.regex.Pattern;
 
 /**
  * Created by AsusIT on 24.07.2017.
@@ -56,7 +56,6 @@ public class Student {
     public List<Mark> getListMarks() {
         return listMarks;
     }
-
 
     public void setListMarks(List<Mark> listMarks) {
         for (Mark mark : listMarks) {

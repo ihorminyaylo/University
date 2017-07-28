@@ -21,7 +21,7 @@ public class LessonServiceDB {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {
             LessonMapper lessonMapper = sqlSession.getMapper(LessonMapper.class);
-            return lessonMapper.getLessonById();
+            return lessonMapper.getLessonById(id);
         } finally {
             sqlSession.close();
         }

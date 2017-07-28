@@ -1,10 +1,12 @@
 import exception.InvalidFormatException;
 import mapper.StudentMapper;
+import mapper.SubjectMapper;
 import model.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import service.MarkServices;
+import servicesDB.LessonServiceDB;
 import servicesDB.StudentServiceDB;
 import servicesDB.SubjectServiceDB;
 
@@ -102,6 +104,30 @@ public class Main {
         System.out.println(subjectServiceDB.getSubjectById(1));
         *//*SubjectServiceDB subjectServiceDB = new SubjectServiceDB();
         subjectServiceDB.createSubject(new Subject("Anglishsss"));*/
-    }
 
+        /*Student student = new Student();
+        student.setFirstName("Aaaa");
+        student.setLastName("Bbbb");
+        StudentServiceDB studentServiceDB = new StudentServiceDB();
+        studentServiceDB.createStudent(student);*/
+
+        /*StudentServiceDB studentServiceDB1 = new StudentServiceDB();
+        //System.out.println(studentServiceDB1.getStudentById(1));
+        System.out.println(studentServiceDB1.getAllStudents());
+
+        LessonServiceDB lessonServiceDB = new LessonServiceDB();
+        System.out.println(lessonServiceDB.getAllLesson());*/
+
+        /*SubjectServiceDB subjectServiceDB = new SubjectServiceDB();
+        System.out.println(subjectServiceDB.getAllSubjects());*/
+        //System.out.println(subjectServiceDB.getSubjectById(1));
+        SubjectServiceDB subjectServiceDB = new SubjectServiceDB();
+        List<Subject> list = new ArrayList<>();
+        list = subjectServiceDB.getAllSubjects();
+        System.out.println(list.get(0).getIdSubject());
+        LessonServiceDB lessonServiceDB = new LessonServiceDB();
+        //lessonServiceDB.createLesson(new Lesson(subjectServiceDB.getSubjectById(5), LocalDate.of(2017, 5 , 12)));
+        //System.out.println(lessonServiceDB.getAllLesson());
+        System.out.println(lessonServiceDB.getLessonById(1));
     }
+}

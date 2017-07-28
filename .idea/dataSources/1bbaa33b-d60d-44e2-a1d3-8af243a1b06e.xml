@@ -15,8 +15,8 @@
     </database>
     <schema id="5" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-07-27.17:24:22.980</IntrospectionTimestamp>
-      <IntrospectionStateNumber>3975248</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-07-28.18:03:06.636</IntrospectionTimestamp>
+      <IntrospectionStateNumber>3975259</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -40,47 +40,103 @@
       <StateNumber>3975230</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="12" parent="5" name="lessons_id_lesson_seq">
+    <sequence id="12" parent="5" name="journal_id_mark_seq">
+      <ObjectId>286063</ObjectId>
+      <StateNumber>3975254</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="13" parent="5" name="lessons_id_lesson_seq">
       <ObjectId>286015</ObjectId>
       <StateNumber>3975217</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="13" parent="5" name="students_id_seq1">
+    <sequence id="14" parent="5" name="students_id_seq1">
       <ObjectId>286023</ObjectId>
       <StateNumber>3975231</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="14" parent="5" name="subject_id_subject_seq">
+    <sequence id="15" parent="5" name="subject_id_subject_seq">
       <ObjectId>286035</ObjectId>
       <StateNumber>3975236</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <sequence id="15" parent="5" name="subjects_id_subject_seq">
+    <sequence id="16" parent="5" name="subjects_id_subject_seq">
       <ObjectId>286048</ObjectId>
       <StateNumber>3975240</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <table id="16" parent="5" name="journal">
+    <table id="17" parent="5" name="journal">
       <ObjectId>285990</ObjectId>
-      <StateNumber>3975201</StateNumber>
+      <StateNumber>3975258</StateNumber>
     </table>
-    <table id="17" parent="5" name="lessons">
+    <table id="18" parent="5" name="lessons">
       <ObjectId>285987</ObjectId>
-      <StateNumber>3975248</StateNumber>
+      <StateNumber>3975258</StateNumber>
     </table>
-    <table id="18" parent="5" name="students">
+    <table id="19" parent="5" name="students">
       <ObjectId>286025</ObjectId>
       <StateNumber>3975231</StateNumber>
     </table>
-    <table id="19" parent="5" name="subjects">
+    <table id="20" parent="5" name="subjects">
       <ObjectId>286037</ObjectId>
       <StateNumber>3975248</StateNumber>
     </table>
-    <column id="20" parent="17" name="id_lesson">
+    <column id="21" parent="17" name="score">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>3975253</StateNumber>
+    </column>
+    <column id="22" parent="17" name="id_mark">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>3975254</StateNumber>
+      <SequenceName>journal_id_mark_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;journal_id_mark_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="23" parent="17" name="id_lesson">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>3975256</StateNumber>
+    </column>
+    <index id="24" parent="17" name="journal_id_mark_pk">
+      <ObjectId>286076</ObjectId>
+      <ColNames>id_mark</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="25" parent="17" name="journal_id_mark_uindex">
+      <ObjectId>286069</ObjectId>
+      <ColNames>id_mark</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="26" parent="17" name="journal_id_lesson_uindex">
+      <ObjectId>286070</ObjectId>
+      <ColNames>id_lesson</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="27" parent="17" name="journal_id_mark_pk">
+      <ObjectId>286077</ObjectId>
+      <ColNames>id_mark</ColNames>
+      <UnderlyingIndexName>journal_id_mark_pk</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="28" parent="17" name="id_lesson">
+      <ObjectId>286071</ObjectId>
+      <ColNames>id_lesson</ColNames>
+      <RefTableId>285987</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>lessons</RefTableName>
+      <RefKeyName>lessons_id_lesson_pk</RefKeyName>
+      <RefColNames>id_lesson</RefColNames>
+    </foreign-key>
+    <column id="29" parent="18" name="id_lesson">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
@@ -88,40 +144,35 @@
       <SequenceName>lessons_id_lesson_seq</SequenceName>
       <DefaultExpression>nextval(&apos;lessons_id_lesson_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="21" parent="17" name="id_subject">
+    <column id="30" parent="18" name="id_subject">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>3975246</StateNumber>
     </column>
-    <column id="22" parent="17" name="date">
+    <column id="31" parent="18" name="date">
       <Position>3</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>3975223</StateNumber>
     </column>
-    <index id="23" parent="17" name="lessons_id_lesson_pk">
+    <index id="32" parent="18" name="lessons_id_lesson_pk">
       <ObjectId>286019</ObjectId>
       <ColNames>id_lesson</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="24" parent="17" name="lessons_id_lesson_uindex">
+    <index id="33" parent="18" name="lessons_id_lesson_uindex">
       <ObjectId>286018</ObjectId>
       <ColNames>id_lesson</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="25" parent="17" name="lessons_id_subject_uindex">
-      <ObjectId>286057</ObjectId>
-      <ColNames>id_subject</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="26" parent="17" name="lessons_id_lesson_pk">
+    <key id="34" parent="18" name="lessons_id_lesson_pk">
       <ObjectId>286020</ObjectId>
       <ColNames>id_lesson</ColNames>
       <UnderlyingIndexName>lessons_id_lesson_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="27" parent="17" name="id_subject">
+    <foreign-key id="35" parent="18" name="id_subject">
       <ObjectId>286058</ObjectId>
       <ColNames>id_subject</ColNames>
       <RefTableId>286037</RefTableId>
@@ -130,7 +181,7 @@
       <RefKeyName>subject_pkey</RefKeyName>
       <RefColNames>id_subject</RefColNames>
     </foreign-key>
-    <column id="28" parent="18" name="id">
+    <column id="36" parent="19" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
@@ -138,35 +189,35 @@
       <SequenceName>students_id_seq1</SequenceName>
       <DefaultExpression>nextval(&apos;students_id_seq1&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="29" parent="18" name="first_name">
+    <column id="37" parent="19" name="first_name">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>3975231</StateNumber>
     </column>
-    <column id="30" parent="18" name="last_name">
+    <column id="38" parent="19" name="last_name">
       <Position>3</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>3975231</StateNumber>
     </column>
-    <index id="31" parent="18" name="students_id_uindex">
+    <index id="39" parent="19" name="students_id_uindex">
       <ObjectId>286034</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="32" parent="18" name="students_pkey">
+    <index id="40" parent="19" name="students_pkey">
       <ObjectId>286032</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="33" parent="18" name="students_pkey">
+    <key id="41" parent="19" name="students_pkey">
       <ObjectId>286033</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>students_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="34" parent="19" name="id_subject">
+    <column id="42" parent="20" name="id_subject">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
@@ -174,28 +225,28 @@
       <SequenceName>subjects_id_subject_seq</SequenceName>
       <DefaultExpression>nextval(&apos;subjects_id_subject_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="35" parent="19" name="subject_name">
+    <column id="43" parent="20" name="subject_name">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>3975236</StateNumber>
     </column>
-    <index id="36" parent="19" name="subject_id_subject_uindex">
+    <index id="44" parent="20" name="subject_id_subject_uindex">
       <ObjectId>286046</ObjectId>
       <ColNames>id_subject</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="37" parent="19" name="subject_pkey">
+    <index id="45" parent="20" name="subject_pkey">
       <ObjectId>286044</ObjectId>
       <ColNames>id_subject</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="38" parent="19" name="subject_subject_name_uindex">
+    <index id="46" parent="20" name="subject_subject_name_uindex">
       <ObjectId>286047</ObjectId>
       <ColNames>subject_name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="39" parent="19" name="subject_pkey">
+    <key id="47" parent="20" name="subject_pkey">
       <ObjectId>286045</ObjectId>
       <ColNames>id_subject</ColNames>
       <UnderlyingIndexName>subject_pkey</UnderlyingIndexName>

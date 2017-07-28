@@ -22,7 +22,5 @@ public class JSON {
         List<Student> userList =
                 new ObjectMapper().readValue(new File(filepath), new TypeReference<ArrayList<Student>>() {});
         return userList;
-        /*return filepath.endsWith(".txt") ?
-                new ObjectMapper().readValue(new File(filepath), new TypeReference<ArrayList<model.Student>>() {}) : new ArrayList<>();*/
     }
 }

@@ -29,7 +29,7 @@ public class Journal{
 
     public Set<Subject> getSubjectsOfDate(LocalDate date) {
         Set<Subject> subjects = new HashSet<>();
-        listMarks.stream().filter(mark -> mark.getLesson().getTimeClass()
+        listMarks.stream().filter(mark -> mark.getLesson().getDate()
                 .equals(date)).forEach(mark -> subjects.add(mark.getLesson().getSubject()));
         return subjects;
     }
