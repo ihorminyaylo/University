@@ -48,6 +48,6 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "Date - " + lesson.getSubject() + ", time - " + lesson.getDate() + ", score - " + score;
+        return "id lesson - " + lesson.getIdLesson() + ". Date - " + lesson.getSubject() + ", time - " + lesson.getDate() + ", score - " + score;
     }
 }

@@ -24,7 +24,6 @@ public class Journal{
 
     public double getAverageMarkForSubject(Subject subject) {
         return listMarks.stream().filter(mark-> mark.getLesson().getSubject().equals(subject)).collect(Collectors.averagingDouble(Mark::getScore));
-
     }
 
     public Set<Subject> getSubjectsOfDate(LocalDate date) {

@@ -61,7 +61,7 @@ public class Lesson {
 
     @Override
     public String toString() {
-        return "model.Subject - " + subject + ". Date : " + date;
+        return "Subject name - " + subject.getSubjectName() + ". Date : " + date;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package service;
 
 import exception.InvalidFormatException;
+import model.Lesson;
 import model.Mark;
 import model.Student;
 
