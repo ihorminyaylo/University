@@ -2,6 +2,7 @@ package servicesDB;
 
 import mapper.SubjectMapper;
 import model.Subject;
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -32,6 +33,28 @@ public class SubjectServiceDB {
         try {
             SubjectMapper subjectMapper = sqlSession.getMapper(SubjectMapper.class);
             subjectMapper.insertSubject(subject);
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public void setSubject(Subject subject) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            SubjectMapper subjectMapper = sqlSession.getMapper(SubjectMapper.class);
+            subjectMapper.updateSubject(subject);
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public void deleteSubject(Subject subject) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            SubjectMapper subjectMapper = sqlSession.getMapper(SubjectMapper.class);
+            subjectMapper.deleteSubject(subject);
             sqlSession.commit();
         } finally {
             sqlSession.close();

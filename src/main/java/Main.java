@@ -23,12 +23,8 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws IOException, InvalidFormatException {
-        /*MarkServiceDB markServiceDB = new MarkServiceDB();
-        LessonServiceDB lessonServiceDB = new LessonServiceDB();
-        SubjectServiceDB subjectServiceDB = new SubjectServiceDB();
-        Lesson lesson = lessonServiceDB.getLessonById(11);
-        markServiceDB.createMark(new Mark(lesson, 98));*/
-
-        System.out.println(new StudentServiceDB().getAllStudents());
+        StudentServiceDB studentServiceDB = new StudentServiceDB();
+        Student student = studentServiceDB.getStudentById(6);
+        studentServiceDB.deleteStudent(student);
     }
 }

@@ -40,4 +40,26 @@ public class StudentServiceDB {
             sqlSession.close();
         }
     }
+
+    public void setStudent(Student student) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            studentMapper.updateStudent(student);
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public void deleteStudent(Student student) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            studentMapper.deleteStudent(student);
+            sqlSession.commit();
+        } finally {
+            sqlSession.commit();
+        }
+    }
 }

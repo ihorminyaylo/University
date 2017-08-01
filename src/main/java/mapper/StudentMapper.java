@@ -1,10 +1,7 @@
 package mapper;
 
 import model.Student;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,6 +22,12 @@ public interface StudentMapper {
             @Result(column = "last_name", property = "lastName")
     })
     Student getStudentById(Integer id);
+
+    @Update("UPDATE students SET (first_name, last_name) = (#{firstName}, #{lastName}) WHERE id = #{id}")
+    void updateStudent(Student student);
+
+    @Delete("DELETE FROM students WHERE id = #{id}")
+    void deleteStudent(Student student);
 
     @Insert("INSERT INTO students (first_name, last_name) VALUES (#{firstName}, #{lastName})")
     void insertStudent(Student student);

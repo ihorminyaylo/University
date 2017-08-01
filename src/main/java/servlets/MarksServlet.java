@@ -1,7 +1,7 @@
 package servlets;
 
-import model.Student;
-import servicesDB.StudentServiceDB;
+import model.Mark;
+import servicesDB.MarkServiceDB;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/marks")
+public class MarksServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Student> students = new StudentServiceDB().getAllStudents();
-        req.setAttribute("students", students);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/pages/index.jsp");
-        requestDispatcher.forward(req, resp);
+        List<Mark> markList = new MarkServiceDB().getAllMarks();
+        req.setAttribute("markList", markList);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("marks.jsp");
+        dispatcher.forward(req, resp);
     }
 }

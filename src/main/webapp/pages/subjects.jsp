@@ -1,40 +1,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<!DOCTYPE html>
 <html>
 <head>
-    <title>HOME</title>
+    <title>Subjects</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
 <div class="container">
     <c:choose>
-        <c:when test="${empty students}">
-            We don't have students.
+        <c:when test="${empty subjects}">
+            We don't have subjects.
         </c:when>
         <c:otherwise>
-            <h2>Students</h2>
+            <h2>Subjects</h2>
             <table class="table table-condensed">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>ACTION for student</th>
+                    <th>Subject name</th>
+                    <th>ACTION</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${students}" var="st">
+                <c:forEach items="${subjects}" var="subject">
                     <tr>
                         <td>1</td>
-                        <td>${st.firstName}</td>
-                        <td>${st.lastName}</td>
+                        <td>${subject.subjectName}</td>
                         <td>
-                        <a type="button" href="/edit_student?id=${st.id}" class="btn btn-primary btn-md">Edit</a>
-                            <form action="/delete_student?id=${st.id}" method="post">
-                                <input type="submit" value="Delete" class="btn btn-primary btn-md">
-                            </form>
+                        <%--<a type="button" href="/edit_subject?id=${subject.id}" class="btn btn-primary btn-md">Edit</a>
+                        <form action="/delete_subject?id=${subject.id}" method="post">
+                            <input type="submit" value="Delete" class="btn btn-primary btn-md">
+                        </form>--%>
                         </td>
                     </tr>
                 </c:forEach>
@@ -42,7 +39,7 @@
             </table>
         </c:otherwise>
     </c:choose>
-    <p><a type="button" href="/add_student" class="btn btn-primary btn-lg" cem>Add student</a></p>
+    <p><a type="button" href="/add_subject" class="btn btn-primary btn-lg" cem>Add subject</a></p>
 </div>
 </body>
 </html>

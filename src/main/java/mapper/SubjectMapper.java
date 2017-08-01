@@ -1,10 +1,8 @@
 package mapper;
 
+import model.Student;
 import model.Subject;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -23,6 +21,12 @@ public interface SubjectMapper {
         @Result(column = "subject_name", property = "subjectName")
     })
     Subject getSubjectById(Integer id);
+
+    @Update("UPDATE subjects SET (subject_name) = (#{subjectName}) WHERE id_subject = #{idSubject}")
+    void updateSubject(Subject subject);
+
+    @Delete("DELETE FROM subjects WHERE id_subject = #{idSubject}")
+    void deleteSubject(Subject subject);
 
     @Insert("INSERT INTO subjects(subject_name) VALUES (#{subjectName})")
     void insertSubject(Subject subject);
