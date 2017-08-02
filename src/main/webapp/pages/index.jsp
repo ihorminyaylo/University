@@ -25,16 +25,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${students}" var="st">
+                <c:forEach items="${students}" var="st" varStatus="status">
                     <tr>
-                        <td>1</td>
+                        <td>${status.count}</td>
                         <td>${st.firstName}</td>
                         <td>${st.lastName}</td>
                         <td>
-                        <a type="button" href="/edit_student?id=${st.id}" class="btn btn-primary btn-md">Edit</a>
-                            <form action="/delete_student?id=${st.id}" method="post">
-                                <input type="submit" value="Delete" class="btn btn-primary btn-md">
-                            </form>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a type="button" href="/edit_student?id=${st.id}" class="btn btn-primary btn-md">Edit</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <form action="/delete_student?id=${st.id}" method="post">
+                                        <input type="submit" value="Delete" class="btn btn-primary btn-md">
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </c:forEach>

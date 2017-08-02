@@ -23,15 +23,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${subjects}" var="subject">
+                <c:forEach items="${subjects}" var="subject"  varStatus="status">
                     <tr>
-                        <td>1</td>
+                        <td>${status.count}</td>
                         <td>${subject.subjectName}</td>
                         <td>
-                        <%--<a type="button" href="/edit_subject?id=${subject.id}" class="btn btn-primary btn-md">Edit</a>
-                        <form action="/delete_subject?id=${subject.id}" method="post">
-                            <input type="submit" value="Delete" class="btn btn-primary btn-md">
-                        </form>--%>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a type="button" href="/edit_subject?id=${subject.idSubject}" class="btn btn-primary btn-md">Edit</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <form action="/delete_subject?id=${subject.idSubject}" method="post">
+                                        <input type="submit" value="Delete" class="btn btn-primary btn-md">
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </c:forEach>

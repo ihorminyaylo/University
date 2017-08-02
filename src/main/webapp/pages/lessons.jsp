@@ -20,14 +20,27 @@
                     <th>#</th>
                     <th>Date</th>
                     <th>Subject name</th>
+                    <th>ACTION</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${lessonList}" var="lesson">
+                <c:forEach items="${lessonList}" var="lesson"  varStatus="status">
                     <tr>
-                        <td>1</td>
+                        <td>${status.count}</td>
                         <td>${lesson.date}</td>
                         <td>${lesson.subject.subjectName}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a type="button" href="/edit_lesson?id=${lesson.idLesson}" class="btn btn-primary btn-md">Edit</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <form action="delete_lesson?id=${lesson.idLesson}" method="post">
+                                        <input type="submit" value="Delete" class="btn btn-primary btn-md">
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

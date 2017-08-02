@@ -15,7 +15,6 @@
 <jsp:include page="menu.jsp"/>
 <form class="form-horizontal" action="/edit_subject" method="POST">
     <h1>Edit information about ${subject.subjectName}</h1>
-    <h1>Add subject</h1>
     <div class="form-group">
         <label class="control-label col-sm-2" for="subjectName">Subject name</label>
         <div class="col-sm-10">
