@@ -1,10 +1,8 @@
 package mapper;
 
 import model.Lesson;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import model.Subject;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -26,6 +24,9 @@ public interface LessonMapper {
             @Result(column = "date", property = "date")
     })
     Lesson getLessonById(Integer id);
+
+    @Update("UPDATE lessons SET (id_subject, date) = (#{subject.idSubject}, date) WHERE id_lesson = #{idLesson}")
+    void updateLesson(Lesson lesson);
 
     @Insert("INSERT INTO lessons(id_subject, date) VALUES (#{subject.idSubject}, #{date})")
     void insertLesson(Lesson lesson);

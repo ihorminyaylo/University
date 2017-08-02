@@ -35,7 +35,7 @@ public class EditStudentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         Student student = new StudentServiceDB().getStudentById(id);
-        req.setAttribute("id", id);
+        req.setAttribute("student", student);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/pages/edit_student.jsp");
         dispatcher.forward(req, resp);
     }

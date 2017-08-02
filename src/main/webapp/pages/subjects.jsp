@@ -10,7 +10,7 @@
 <div class="container">
     <c:choose>
         <c:when test="${empty subjects}">
-            We don't have subjects.
+            <h1>We don't have subjects.</h1>
         </c:when>
         <c:otherwise>
             <h2>Subjects</h2>
@@ -23,15 +23,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${subjects}" var="subject">
+                <c:forEach items="${subjects}" var="subject" varStatus="status">
                     <tr>
-                        <td>1</td>
+                        <td>${status.count}</td>
                         <td>${subject.subjectName}</td>
                         <td>
-                        <%--<a type="button" href="/edit_subject?id=${subject.id}" class="btn btn-primary btn-md">Edit</a>
-                        <form action="/delete_subject?id=${subject.id}" method="post">
-                            <input type="submit" value="Delete" class="btn btn-primary btn-md">
-                        </form>--%>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <a type="button" href="/edit_subject?id=${subject.idSubject}" class="btn btn-primary btn-md">Edit</a>
+                                </div>
+                                <div class="col-md-11">
+                                    <form action="/delete_subject?id=${subject.idSubject}" method="post">
+                                        <input type="submit" value="Delete" class="btn btn-danger btn-md">
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </c:forEach>
