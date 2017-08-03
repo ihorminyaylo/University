@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class MarkServiceDB {
-    public List<Mark> getAllMarks() {
+    /*public List<Mark> getAllMarks() {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {
             MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
@@ -36,5 +36,5 @@ public class MarkServiceDB {
         } finally {
             sqlSession.close();
         }
-    }
+    }*/
 }

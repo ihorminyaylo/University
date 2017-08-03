@@ -16,9 +16,9 @@ import java.util.List;
 public class MarksServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Mark> markList = new MarkServiceDB().getAllMarks();
+       /* List<Mark> markList = new MarkServiceDB().getAllMarks();
         req.setAttribute("markList", markList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("marks.jsp");
-        dispatcher.forward(req, resp);
+        dispatcher.forward(req, resp);*/
     }
 }

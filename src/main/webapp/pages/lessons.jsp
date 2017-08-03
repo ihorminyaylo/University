@@ -46,6 +46,7 @@
             </table>
         </c:otherwise>
     </c:choose>
+    <p><a type="button" href="/add_lesson" class="btn btn-primary btn-lg" cem>Add lesson</a></p>
 </div>
 </body>
 </html>

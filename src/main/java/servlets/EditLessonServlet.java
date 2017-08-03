@@ -26,7 +26,6 @@ public class EditLessonServlet extends HttpServlet {
         int idSubject = Integer.parseInt(req.getParameter("newIdSubject"));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(req.getParameter("newDate"), dateTimeFormatter);
-        /*LocalDate date = LocalDate.parse(req.getParameter("newDate"));*/
         LessonServiceDB lessonServiceDB =  new LessonServiceDB();
         Lesson lesson = lessonServiceDB.getLessonById(idLesson);
         lesson.setSubject(new SubjectServiceDB().getSubjectById(idSubject));
