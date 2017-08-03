@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Marks</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="menu.jsp"/>

@@ -30,7 +30,7 @@ public class StudentServiceDB {
         }
     }
 
-    public void createStudent(Student student) {
+    public void insertStudent(Student student) {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {
             StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
@@ -41,7 +41,7 @@ public class StudentServiceDB {
         }
     }
 
-    public void setStudent(Student student) {
+    public void updateStudent(Student student) {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {
             StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);

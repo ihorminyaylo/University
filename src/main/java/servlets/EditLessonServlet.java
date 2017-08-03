@@ -23,29 +23,46 @@ public class EditLessonServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idLesson = Integer.parseInt(req.getParameter("id"));
-        int idSubject = Integer.parseInt(req.getParameter("newIdSubject"));
+        int validation = 1;
+        int idSubject;
+        idSubject = Integer.parseInt(req.getParameter("newIdSubject"));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(req.getParameter("newDate"), dateTimeFormatter);
-        LessonServiceDB lessonServiceDB =  new LessonServiceDB();
+        LessonServiceDB lessonServiceDB = new LessonServiceDB();
         Lesson lesson = lessonServiceDB.getLessonById(idLesson);
         lesson.setSubject(new SubjectServiceDB().getSubjectById(idSubject));
+        lesson.setSubject(new SubjectServiceDB().getSubjectById(idSubject));
         try {
+            LocalDate date = LocalDate.parse(req.getParameter("newDate"), dateTimeFormatter);
             lesson.setDate(date);
         } catch (InvalidFormatException e) {
-            e.printStackTrace();
+            validation = 0;
+        } catch (Exception e) {
+            validation = 0;
         }
-        lessonServiceDB.setLesson(lesson);
-        resp.sendRedirect("/lessons");
+
+        if (validation == 1) {
+            lessonServiceDB.setLesson(lesson);
+            resp.sendRedirect("/lessons");
+        }
+        else {
+            List<Subject> subjectList = new SubjectServiceDB().getAllSubjects();
+            req.setAttribute("validation", validation);
+            req.setAttribute("lesson", lesson);
+            req.setAttribute("subjectList", subjectList);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/edit_lesson.jsp");
+            dispatcher.forward(req, resp);
+        }
+
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        Lesson lesson = new LessonServiceDB().getLessonById(id);
+        int idLesson = Integer.parseInt(req.getParameter("id"));
+        Lesson lesson = new LessonServiceDB().getLessonById(idLesson);
         List<Subject> subjectList = new SubjectServiceDB().getAllSubjects();
         req.setAttribute("lesson", lesson);
         req.setAttribute("subjectList", subjectList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/pages/edit_lesson.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/edit_lesson.jsp");
         dispatcher.forward(req, resp);
     }
 }

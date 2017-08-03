@@ -18,7 +18,7 @@ public class LessonsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Lesson> lessonList = new LessonServiceDB().getAllLesson();
         req.setAttribute("lessonList", lessonList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/pages/lessons.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/lessons.jsp");
         dispatcher.forward(req, resp);
     }
 }

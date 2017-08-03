@@ -1,5 +1,6 @@
 package servlets;
 
+import exception.InvalidFormatException;
 import model.Student;
 import model.Subject;
 import servicesDB.StudentServiceDB;
@@ -20,13 +21,25 @@ public class AddSubjectServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String newSubjectName = req.getParameter("newSubjectName");
         Subject subject = new Subject(newSubjectName);
-        new SubjectServiceDB().createSubject(subject);
-        resp.sendRedirect("/subjects");
+        int validation = 1;
+        try {
+            new SubjectServiceDB().createSubject(subject);
+        } catch (InvalidFormatException e) {
+            validation = 0;
+        }
+        if (validation == 1) {
+            resp.sendRedirect("/subjects");
+        }
+        else {
+            req.setAttribute("validation", validation);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/add_subject.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("pages/add_subject.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/add_subject.jsp");
         dispatcher.forward(req, resp);
     }
 }

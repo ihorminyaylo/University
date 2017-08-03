@@ -10,14 +10,13 @@
 <html>
 <head>
     <title>Add lesson</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/jquery/jquery-ui.min.css"/>" rel="stylesheet" >
+    <script src="<c:url value="/resources/jquery/external/jquery/jquery.js"/>"></script>
+    <script src="<c:url value="/resources/jquery/jquery-ui.min.js"/>"></script>
     <script>
         $( function() {
-            $( "#datepicker" ).datepicker();
+        $( "#date" ).datepicker();
         } );
     </script>
 </head>
@@ -34,22 +33,24 @@
             <div class="col-md-4">
                 <label for="subjectName">Subject name</label>
                 <select class="form-control col-md-6" id="subjectName" name="newIdSubject">
-                    <option value="0">Select subject</option>
                     <c:forEach items="${subjectList}" var="subject">
                         <option value="${subject.idSubject}" name="newIdSubject" id="newIdSubject">${subject.subjectName}</option>
                     </c:forEach>
                 </select>
             </div>
+            <div class="form-group <c:if test="${validation == 0}">has-error</c:if>">
             <div class="col-md-8">
-                <label for="enterDate">Enter Date:</label><br>
-                <input type="text" id="datepicker" id="enterDate" placeholder="SELECT DATE" name="newDate">
+                <label for="date">Enter Date:</label><br>
+                <input type="text" id="date" placeholder="SELECT DATE" name="newDate">
+                <c:if test="${validation == 0}">
+                    <p class="help-block">The date isn't correct</p>
+                </c:if>
+            </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default">OK</button>
-                </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">OK</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 package servlets;
 
+import exception.InvalidFormatException;
 import model.Student;
 import servicesDB.StudentServiceDB;
 
@@ -16,14 +17,27 @@ public class AddStudentServlet extends HomeServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String newFirstName = req.getParameter("newFirstName");
         String newLastName = req.getParameter("newLastName");
-        Student student = new Student(newFirstName, newLastName);
-        new StudentServiceDB().createStudent(student);
-        resp.sendRedirect("/");
+        Student student = null;
+        int validation = 1;
+        try {
+            student = new Student(newFirstName, newLastName);
+        } catch (InvalidFormatException e) {
+            validation = 0;
+        }
+        if (validation == 1) {
+            new StudentServiceDB().insertStudent(student);
+            resp.sendRedirect("/");
+        }
+        else {
+            req.setAttribute("validation", validation);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/add_student.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("pages/add_student.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/add_student.jsp");
         dispatcher.forward(req, resp);
     }
 }

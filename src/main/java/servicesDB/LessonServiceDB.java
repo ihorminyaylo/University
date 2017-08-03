@@ -7,6 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class LessonServiceDB {
+
+    public void validatorLesson(Lesson lesson) {
+
+    }
+
     public List<Lesson> getAllLesson() {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {

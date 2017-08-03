@@ -21,14 +21,23 @@ public class EditStudentServlet extends HttpServlet {
         Student student = studentServiceDB.getStudentById(id);
         String newFirstName = req.getParameter("newFirstName");
         String newLastName = req.getParameter("newLastName");
+        int validation = 1;
         try {
             student.setFirstName(newFirstName);
             student.setLastName(newLastName);
         } catch (InvalidFormatException e) {
-            e.printStackTrace();
+            validation = 0;
         }
-        studentServiceDB.setStudent(student);
-        resp.sendRedirect("/");
+        if (validation == 1) {
+            studentServiceDB.updateStudent(student);
+            resp.sendRedirect("/");
+        }
+        else {
+            req.setAttribute("student", student);
+            req.setAttribute("validation", validation);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/edit_student.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 
     @Override
@@ -36,7 +45,7 @@ public class EditStudentServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         Student student = new StudentServiceDB().getStudentById(id);
         req.setAttribute("student", student);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/pages/edit_student.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/edit_student.jsp");
         dispatcher.forward(req, resp);
     }
 }

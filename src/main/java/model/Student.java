@@ -67,9 +67,9 @@ public class Student {
     public Student() {
     }
 
-    public Student(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Student(String firstName, String lastName) throws InvalidFormatException {
+        setFirstName(firstName);
+        setLastName(lastName);
     }
 
     @Override

@@ -24,21 +24,36 @@ public class AddLessonServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idSubject = Integer.parseInt(req.getParameter("newIdSubject"));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(req.getParameter("newDate"), dateTimeFormatter);
         LessonServiceDB lessonServiceDB =  new LessonServiceDB();
+        int validation = 1;
+        LocalDate date = null;
         try {
-            lessonServiceDB.createLesson(new Lesson(new SubjectServiceDB().getSubjectById(idSubject), date));
-        } catch (InvalidFormatException e) {
-            e.printStackTrace();
+            date = LocalDate.parse(req.getParameter("newDate"), dateTimeFormatter);
+        } catch (Exception e) {
+            validation = 0;
         }
-        resp.sendRedirect("/lessons");
+        if (validation == 1) {
+            try {
+                lessonServiceDB.createLesson(new Lesson(new SubjectServiceDB().getSubjectById(idSubject), date));
+            } catch (InvalidFormatException e) {
+                e.printStackTrace();
+            }
+            resp.sendRedirect("/lessons");
+        }
+        else {
+            List<Subject> subjectList = new SubjectServiceDB().getAllSubjects();
+            req.setAttribute("validation", validation);
+            req.setAttribute("subjectList", subjectList);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/add_lesson.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Subject> subjectList = new SubjectServiceDB().getAllSubjects();
         req.setAttribute("subjectList", subjectList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("pages/add_lesson.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/add_lesson.jsp");
         dispatcher.forward(req, resp);
     }
 }

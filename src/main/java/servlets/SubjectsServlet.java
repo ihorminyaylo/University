@@ -18,7 +18,7 @@ public class SubjectsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Subject> subjects = new SubjectServiceDB().getAllSubjects();
         req.setAttribute("subjects", subjects);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/pages/subjects.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/subjects.jsp");
         dispatcher.forward(req, resp);
     }
 }

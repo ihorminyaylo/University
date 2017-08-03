@@ -50,7 +50,7 @@ public class StudentServiceDBTest {
         student.setId(id);
         student.setFirstName("Martin");
         student.setLastName("Scubs");
-        studentServiceDB.createStudent(student);
+        studentServiceDB.insertStudent(student);
         Student newStudent = studentServiceDB.getStudentById(id);
         Assert.assertNotNull(newStudent);
     }

@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Lessons</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -20,6 +20,8 @@
                     <th>#</th>
                     <th>Date</th>
                     <th>Subject name</th>
+                    <td class="col-md-1"></td>
+                    <td class="col-md-1"></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,16 +31,12 @@
                         <td>${lesson.date}</td>
                         <td>${lesson.subject.subjectName}</td>
                         <td>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <a href="/edit_lesson?id=${lesson.idLesson}" class="btn btn-primary btn-md">Edit</a>
-                                </div>
-                                <div class="col-md-2">
-                                    <form action="/delete_lesson?id=${lesson.idLesson}" method="post">
-                                        <input type="submit" value="Delete" class="btn btn-danger btn-md">
-                                    </form>
-                                </div>
-                            </div>
+                            <a href="/edit_lesson?id=${lesson.idLesson}" class="btn btn-primary btn-md">Edit</a>
+                        </td>
+                        <td>
+                            <form action="/delete_lesson?id=${lesson.idLesson}" method="post">
+                                <input type="submit" value="Delete" class="btn btn-danger btn-md">
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>

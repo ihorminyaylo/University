@@ -1,5 +1,6 @@
 package servlets;
 
+import exception.InvalidFormatException;
 import model.Student;
 import model.Subject;
 import servicesDB.StudentServiceDB;
@@ -22,8 +23,21 @@ public class EditSubjectServlet extends HttpServlet {
         SubjectServiceDB subjectServiceDB = new SubjectServiceDB();
         Subject subject = subjectServiceDB.getSubjectById(id);
         subject.setSubjectName(newSubjectName);
-        subjectServiceDB.setSubject(subject);
-        resp.sendRedirect("/subjects");
+        int validation = 1;
+        try {
+            subjectServiceDB.updateSubject(subject);
+        } catch (InvalidFormatException e) {
+            validation = 0;
+        }
+        if (validation ==1) {
+            resp.sendRedirect("/subjects");
+        }
+        else {
+            req.setAttribute("validation", validation);
+            req.setAttribute("subject", subject);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/edit_subject.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 
     @Override
@@ -31,7 +45,7 @@ public class EditSubjectServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         Subject subject = new SubjectServiceDB().getSubjectById(id);
         req.setAttribute("subject", subject);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/pages/edit_subject.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/edit_subject.jsp");
         dispatcher.forward(req, resp);
     }
 }
