@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("")
 public class HomeServlet extends HttpServlet {
@@ -21,12 +23,17 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Student> students = new StudentServiceDB().getAllStudents();
         StudentServiceDB studentServiceDB = new StudentServiceDB();
+        Map<Student, Boolean> studentHasMarks = new HashMap<>();
         for (Student student : students) {
             List<Mark> markList = new MarkServiceDB().getAllMarksOfStudent(student.getId());
-            if (!markList.isEmpty()) {
-                req.setAttribute("studentHasMarks", true);
+            if (markList.isEmpty()) {
+                studentHasMarks.put(student, false);
+            }
+            else {
+                studentHasMarks.put(student, true);
             }
         }
+        req.setAttribute("studentHasMarks", studentHasMarks);
         req.setAttribute("students", students);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/pages/index.jsp");
         requestDispatcher.forward(req, resp);

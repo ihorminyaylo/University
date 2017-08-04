@@ -38,21 +38,18 @@
                             <a type="button" href="/edit_student?id=${st.id}" class="btn btn-primary btn-md">Edit</a>
                         </td>
                         <td>
-                            <%--<script>
+                            <script>
                                 function deleteS(b) {
                                     if (b) {
-                                        alert('This student has marks. You can not deleted this student!');
-                                        return false;
+                                        return alert('This student has marks. You can not deleted this student!');
                                     }
                                     else {
-                                        var r;
-                                        r = confirm('Are you sure you want to remove this student?');
-                                        return r;
+                                        return confirm('Are you sure you want to remove this student?');
                                     }
                                 }
-                            </script>--%>
+                            </script>
                             <form action="/delete_student?id=${st.id}" method="post">
-                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return deleteS(${studentHasMarks})">
+                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return deleteS(${studentHasMarks.get(student)})">
                             </form>
                         </td>
                     </tr>

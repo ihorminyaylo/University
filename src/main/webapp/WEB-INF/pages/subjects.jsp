@@ -32,7 +32,20 @@
                             <a type="button" href="/edit_subject?id=${subject.idSubject}" class="btn btn-primary btn-md">Edit</a>
                         </td>
                         <td>
-                            <form action="/delete_subject?id=${subject.idSubject}" method="post" onclick="return deleteS(${subjectHasLesson})">
+                            <script>
+                                function deleteS(b) {
+                                    if (b) {
+                                        alert('This subject has lessons. You can not deleted this student!');
+                                        return false;
+                                    }
+                                    else {
+                                        var r;
+                                        r = confirm('Are you sure you want to remove this subject?');
+                                        return r;
+                                    }
+                                }
+                            </script>
+                            <form action="/delete_subject?id=${subject.idSubject}" method="post" onclick="return deleteS(${subjectHasLesson.get(subject)})">
                                 <input type="submit" value="Delete" class="btn btn-danger btn-md">
                             </form>
                         </td>

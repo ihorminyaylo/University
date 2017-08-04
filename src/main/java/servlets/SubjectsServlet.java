@@ -12,21 +12,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/subjects")
 public class SubjectsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Subject> subjects = new SubjectServiceDB().getAllSubjects();
-        boolean subjectHasLesson = false;
         List<Lesson> lessonList = new LessonServiceDB().getAllLesson();
+        Map<Subject, Boolean> subjectHasLesson = new HashMap<>();
         for (Subject subject : subjects) {
+            boolean b = false;
             for (Lesson lesson : lessonList) {
                 if (lesson.getSubject().getIdSubject() == subject.getIdSubject()) {
-                    subjectHasLesson = true;
+                    b = true;
                 }
             }
+            subjectHasLesson.put(subject, b);
+            b = false;
         }
         req.setAttribute("subjectHasLesson", subjectHasLesson);
         req.setAttribute("subjects", subjects);
