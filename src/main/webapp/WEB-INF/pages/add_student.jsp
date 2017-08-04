@@ -13,20 +13,20 @@
             <h1>Add information about new student</h1>
         </div>
     </div>
-    <div class="form-group <c:if test="${validation == 0}">has-error</c:if>">
+    <div class="form-group <c:if test="${validationFirstName == 0}">has-error</c:if>">
         <label for="firstName" class="col-sm-2 control-label" for="firstName">First name</label>
         <div class="col-sm-5">
             <input type="text" class="form-control" id="firstName"  placeholder="Enter first name" name="newFirstName">
-            <c:if test="${validation == 0}">
+            <c:if test="${validationFirstName == 0}">
                 <p class="help-block">The first name isn't correct</p>
             </c:if>
         </div>
     </div>
-    <div class="form-group <c:if test="${validation == 0}">has-error</c:if>">
+    <div class="form-group <c:if test="${validationLastName == 0}">has-error</c:if>">
         <label class="control-label col-sm-2 col-md-2" for="lastName">Last name</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="lastName" placeholder="Enter last name" name="newLastName">
-            <c:if test="${validation == 0}">
+            <input type="text" class="form-control" id="lastName" placeholder="Enter last name" name="newLastName" onclick="validator(newLastName, ${validationLastName})">
+            <c:if test="${validationLastName == 0}">
                 <p class="help-block">The last name isn't correct</p>
             </c:if>
         </div>
@@ -34,6 +34,20 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-success">OK</button>
+
+            <script>
+                function validator(a, b) {
+                    var regex = /[A-Z][a-z]+/;
+                    if (regex.test(a.value)) {
+                        b = 1;
+                    }
+                    else {
+                        b = 0;
+                    }
+                }
+            </script>
+
+
         </div>
     </div>
 </form>

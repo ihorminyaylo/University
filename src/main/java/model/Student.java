@@ -1,6 +1,7 @@
 package model;
 
         import exception.InvalidFormatException;
+        import service.StudentServices;
 
         import java.util.ArrayList;
         import java.util.List;
@@ -15,8 +16,6 @@ public class Student {
     private String firstName;
     private String lastName;
     private List<Mark> listMarks = new ArrayList<>();
-    private final static String NAME_PATTERN = "[A-Z][a-z]+";
-    Pattern pName = Pattern.compile(NAME_PATTERN);
 
     public int getId() {
         return id;
@@ -30,13 +29,8 @@ public class Student {
     }
 
     public void setFirstName(String firstName) throws InvalidFormatException {
-        Matcher mFirstName = pName.matcher(firstName);
-        if (mFirstName.matches()) {
-            this.firstName = firstName;
-        }
-        else {
-            throw new InvalidFormatException("First name isn't correct");
-        }
+        new StudentServices().validateName(firstName);
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -44,13 +38,8 @@ public class Student {
     }
 
     public void setLastName(String lastName) throws InvalidFormatException {
-        Matcher mLastName = pName.matcher(lastName);
-        if (mLastName.matches()) {
-            this.lastName = lastName;
-        }
-        else {
-            throw new InvalidFormatException("Last name isn't correct");
-        }
+        new StudentServices().validateName(lastName);
+        this.lastName = lastName;
     }
 
     public List<Mark> getListMarks() {

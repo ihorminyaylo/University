@@ -2,7 +2,8 @@ import exception.InvalidFormatException;
 import model.*;
 
 import org.testng.annotations.Test;
-import service.MarkServices;
+import service.MarksService;
+import service.StudentServices;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class OurCoolTest {
         Subject subject = new Subject("English");
         lesson.setSubject(subject);
         lesson.setDate(LocalDate.of(2017,5,25));
-        MarkServices markServices = new MarkServices();
+        StudentServices markServices = new StudentServices();
         Student student1 = new Student();
         markServices.setStudent(student1);
         markServices.addMarkForStudent(new Mark(lesson, 100));
@@ -43,7 +44,7 @@ public class OurCoolTest {
         markServices.setStudent(student2);
         markServices.addMarkForStudent(new Mark(lesson, 90));
         List<Student> list = new ArrayList<>();
-        Journal journal = new Journal();
+        MarksService journal = new MarksService();
         journal.setListMarks(list);
         double average = journal.getAverageMarkForSubject(subject);
         //Assert.assertEquals(average, 95);

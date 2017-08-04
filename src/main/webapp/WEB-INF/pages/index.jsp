@@ -44,14 +44,10 @@
                                     var r = confirm(s);
                                     return r;
                                 }
-
-                                function keypress() {
-                                    console.log( "Handler for .keypress() called." );
-                                }
                             </script>
 
                             <form action="/delete_student?id=${st.id}" method="post">
-                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return keypress()('Are you sure you want to remove this student?')">
+                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return deleteS('Are you sure you want to remove this student?')">
                             </form>
                         </td>
                     </tr>

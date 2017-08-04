@@ -1,4 +1,9 @@
-package model;
+package service;
+
+import model.Lesson;
+import model.Mark;
+import model.Student;
+import model.Subject;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -7,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * Created by AsusIT on 24.07.2017.
  */
-public class Journal{
+public class MarksService {
     private List<Mark> listMarks = new ArrayList<>();
 
     public List<Mark> getListMarks() {
@@ -20,7 +25,7 @@ public class Journal{
         }
     }
 
-    public Journal() {}
+    public MarksService() {}
 
     public double getAverageMarkForSubject(Subject subject) {
         return listMarks.stream().filter(mark-> mark.getLesson().getSubject().equals(subject)).collect(Collectors.averagingDouble(Mark::getScore));

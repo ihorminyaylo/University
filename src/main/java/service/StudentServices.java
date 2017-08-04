@@ -6,20 +6,24 @@ import model.Mark;
 import model.Student;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by AsusIT on 25.07.2017.
  */
-public class MarkServices {
+public class StudentServices {
     private Student student;
+    private final static String NAME_PATTERN = "[A-Z][a-z]+";
+    Pattern pName = Pattern.compile(NAME_PATTERN);
 
     public void setStudent(Student student) {
         this.student = student;
     }
 
-    public MarkServices() {}
+    public StudentServices() {}
 
-    public MarkServices(Student student) {
+    public StudentServices(Student student) {
         this.student = student;
     }
 
@@ -37,6 +41,13 @@ public class MarkServices {
                     throw new InvalidFormatException("The student has mark of this lesson");
                 }
             }
+        }
+    }
+
+    public void validateName(String name) throws InvalidFormatException {
+        Matcher mFirstName = pName.matcher(name);
+        if (!mFirstName.matches()) {
+            throw new InvalidFormatException("Name isn't correct");
         }
     }
 }
