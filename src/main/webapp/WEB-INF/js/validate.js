@@ -1,17 +1,11 @@
-/**
- * Created by AsusIT on 03.08.2017.
- */
-<script>
-// just for the demos, avoids form submit
-jQuery.validator.setDefaults({
-    debug: true,
-    success: "valid"
-});
-$( "#myform" ).validate({
-    rules: {
-        field: {
-            required: true
-        }
+function deleteS(b) {
+    if (b) {
+        alert('This student has marks. You can not deleted this student!');
+        return false;
     }
-});
-</script>
+    else {
+        var r;
+        r = confirm('Are you sure you want to remove this student?');
+        return r;
+    }
+}

@@ -7,6 +7,7 @@
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/jquery/external/jquery/jquery.js"/>"></script>
     <script src="<c:url value="/resources/jquery/jquery-ui.min.js"/>"></script>
+    <script src="<c:url value="/WEB-INF/js/validate.js"/>"></script>
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -30,24 +31,28 @@
                 <tbody>
                 <c:forEach items="${students}" var="st" varStatus="status">
                     <tr>
-                        <td>${status.count}</td>
-                        <td>${st.firstName}</td>
-                        <td>${st.lastName}</td>
-                        </td>
+                        <td><a href="/student/marks?id=${st.id}">${status.count}</a></td>
+                        <td><a href="/student/marks?id=${st.id}">${st.firstName}</a></td>
+                        <td><a href="/student/marks?id=${st.id}">${st.lastName}</a></td>
                         <td>
                             <a type="button" href="/edit_student?id=${st.id}" class="btn btn-primary btn-md">Edit</a>
                         </td>
                         <td>
-
-                            <script>
-                                function deleteS(s) {
-                                    var r = confirm(s);
-                                    return r;
+                            <%--<script>
+                                function deleteS(b) {
+                                    if (b) {
+                                        alert('This student has marks. You can not deleted this student!');
+                                        return false;
+                                    }
+                                    else {
+                                        var r;
+                                        r = confirm('Are you sure you want to remove this student?');
+                                        return r;
+                                    }
                                 }
-                            </script>
-
+                            </script>--%>
                             <form action="/delete_student?id=${st.id}" method="post">
-                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return deleteS('Are you sure you want to remove this student?')">
+                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return deleteS(${studentHasMarks})">
                             </form>
                         </td>
                     </tr>

@@ -32,7 +32,7 @@
                             <a type="button" href="/edit_subject?id=${subject.idSubject}" class="btn btn-primary btn-md">Edit</a>
                         </td>
                         <td>
-                            <form action="/delete_subject?id=${subject.idSubject}" method="post">
+                            <form action="/delete_subject?id=${subject.idSubject}" method="post" onclick="return deleteS(${subjectHasLesson})">
                                 <input type="submit" value="Delete" class="btn btn-danger btn-md">
                             </form>
                         </td>

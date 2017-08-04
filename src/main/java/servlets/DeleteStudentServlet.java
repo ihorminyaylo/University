@@ -1,5 +1,7 @@
 package servlets;
 
+import model.Mark;
+import servicesDB.MarkServiceDB;
 import servicesDB.StudentServiceDB;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/delete_student")
 public class DeleteStudentServlet extends HttpServlet{
@@ -16,7 +19,13 @@ public class DeleteStudentServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         StudentServiceDB studentServiceDB = new StudentServiceDB();
-        studentServiceDB.deleteStudent(studentServiceDB.getStudentById(id));
+        List<Mark> markList = new MarkServiceDB().getAllMarksOfStudent(id);
+        if (markList.isEmpty()) {
+            studentServiceDB.deleteStudent(studentServiceDB.getStudentById(id));
+        }
+        else {
+            req.setAttribute("studentHasMarks", 0);
+        }
         resp.sendRedirect("/");
     }
 }

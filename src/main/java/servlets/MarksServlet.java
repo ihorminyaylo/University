@@ -18,7 +18,7 @@ public class MarksServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        /* List<Mark> markList = new MarkServiceDB().getAllMarks();
         req.setAttribute("markList", markList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("marks.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("import_export.jsp");
         dispatcher.forward(req, resp);*/
     }
 }

@@ -10,8 +10,8 @@
                 </li>
                 <li><a href="/lessons">Lessons</a>
                 </li>
-                <%--<li><a href="/marks">Marks</a>
-                </li>--%>
+                <li><a href="/marks">Import/Export</a>
+                </li>
             </ul>
         </div>
     </div>

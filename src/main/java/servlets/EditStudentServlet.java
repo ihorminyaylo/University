@@ -21,20 +21,26 @@ public class EditStudentServlet extends HttpServlet {
         Student student = studentServiceDB.getStudentById(id);
         String newFirstName = req.getParameter("newFirstName");
         String newLastName = req.getParameter("newLastName");
-        int validation = 1;
+        int validationFirstName = 1;
+        int validationLastName = 1;
         try {
             student.setFirstName(newFirstName);
+        } catch (InvalidFormatException e) {
+            validationFirstName = 0;
+        }
+        try {
             student.setLastName(newLastName);
         } catch (InvalidFormatException e) {
-            validation = 0;
+            validationLastName = 0;
         }
-        if (validation == 1) {
+        if (validationFirstName == 1 && validationLastName == 1) {
             studentServiceDB.updateStudent(student);
             resp.sendRedirect("/");
         }
         else {
             req.setAttribute("student", student);
-            req.setAttribute("validation", validation);
+            req.setAttribute("validationFirstName", validationFirstName);
+            req.setAttribute("validationLastName", validationLastName);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/edit_student.jsp");
             dispatcher.forward(req, resp);
         }

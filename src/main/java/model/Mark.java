@@ -7,6 +7,7 @@ import exception.InvalidFormatException;
  */
 public class Mark {
     private int idMark;
+    private Student student;
     private Lesson lesson;
     private double score;
 
@@ -16,6 +17,14 @@ public class Mark {
 
     public void setIdMark(int idMark) {
         this.idMark = idMark;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Lesson getLesson() {
@@ -46,8 +55,14 @@ public class Mark {
         this.score = score;
     }
 
+    public Mark(Lesson lesson, Student student, int score) {
+        this.lesson = lesson;
+        this.student = student;
+        this.score = score;
+    }
+
     @Override
     public String toString() {
-        return "id lesson - " + lesson.getIdLesson() + ". Date - " + lesson.getSubject() + ", time - " + lesson.getDate() + ", score - " + score;
+        return "id lesson - " + lesson.getIdLesson() + ". Date - " + lesson.getSubject() + ", date - " + lesson.getDate() + ", score - " + score;
     }
 }

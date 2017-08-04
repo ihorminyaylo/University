@@ -7,19 +7,19 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface LessonMapper {
-    @Select("SELECT lessons.id, subjects.id, subjects.name, date FROM lessons INNER JOIN subjects ON lessons.subject_id = subjects.id")
+    @Select("SELECT lessons.id, subjects.id AS subject_id, subjects.name, date FROM lessons INNER JOIN subjects ON lessons.subject_id = subjects.id")
     @Results({
             @Result(id = true, column = "id", property = "idLesson"),
             @Result(column = "subject_id", property = "subject.idSubject"),
-            @Result(column = "subject_name", property = "subject.subjectName"),
+            @Result(column = "name", property = "subject.subjectName"),
             @Result(column = "date", property = "date")
     })
     List<Lesson> getAllLessons();
-    @Select("SELECT lessons.id, subjects.id, subjects.name, date FROM lessons INNER JOIN subjects ON lessons.subject_id = subjects.id WHERE lessons.id = #{id}")
+    @Select("SELECT lessons.id, subjects.id AS subject_id, subjects.name, date FROM lessons INNER JOIN subjects ON lessons.subject_id = subjects.id WHERE lessons.id = #{id}")
     @Results({
             @Result(id = true, column = "id", property = "idLesson"),
             @Result(column = "subject_id", property = "subject.idSubject"),
-            @Result(column = "subject_name", property = "subject.subjectName"),
+            @Result(column = "name", property = "subject.subjectName"),
             @Result(column = "date", property = "date")
     })
     Lesson getLessonById(Integer id);

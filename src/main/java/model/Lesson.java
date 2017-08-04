@@ -70,6 +70,6 @@ public class Lesson {
             return false;
         }
         Lesson lesson = (Lesson) obj;
-        return (lesson.getSubject().equals(this.subject) && lesson.getDate().equals(this.date));
+        return (lesson.getIdLesson() == (this.idLesson));
     }
 }
