@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        String password = req.getParameter("password");
+        String password = req.getParameter("psw");
         LoginServiceDB loginServiceDB = new LoginServiceDB();
         User user = new User();
         boolean s = true;
@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/login.jsp");
+        RequestDispatcher dispatcher =req.getRequestDispatcher("/WEB-INF/pages/login.jsp");
         dispatcher.forward(req, resp);
     }
 }

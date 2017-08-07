@@ -29,4 +29,7 @@ public interface LessonMapper {
 
     @Insert("INSERT INTO lessons(subject_id, date) VALUES (#{subject.idSubject}, #{date})")
     void insertLesson(Lesson lesson);
+
+    @Delete("DELETE FROM lessons WHERE id = #{idLesson}")
+    void deleteLesson(Lesson lesson);
 }

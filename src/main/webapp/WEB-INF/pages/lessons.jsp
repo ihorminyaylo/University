@@ -34,8 +34,19 @@
                             <a href="/edit_lesson?id=${lesson.idLesson}" class="btn btn-primary btn-md">Edit</a>
                         </td>
                         <td>
+                            <script>
+                                function deleteLesson(a) {
+                                    if (a) {
+                                        alert("This lesson has marks. You can not deleted this lesson!");
+                                        return false;
+                                    }
+                                    else {
+                                        return confirm('Are you sure you want to remove this lesson?');
+                                    }
+                                }
+                            </script>
                             <form action="/delete_lesson?id=${lesson.idLesson}" method="post">
-                                <input type="submit" value="Delete" class="btn btn-danger btn-md">
+                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return deleteLesson(${lessonHasMarks.get(lesson)})">
                             </form>
                         </td>
                     </tr>

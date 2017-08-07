@@ -53,4 +53,15 @@ public class LessonServiceDB {
             sqlSession.close();
         }
     }
+
+    public void deleteLesson(Lesson lesson) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            LessonMapper lessonMapper = sqlSession.getMapper(LessonMapper.class);
+            lessonMapper.deleteLesson(lesson);
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
 }

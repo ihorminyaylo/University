@@ -34,8 +34,8 @@ public class LoginServiceDB {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {
             LoginMapper loginMapper = sqlSession.getMapper(LoginMapper.class);
-            validateLoginName(name);
-            validateLoginPassword(password);
+            //validateLoginName(name);
+            //validateLoginPassword(password);
             return loginMapper.enterUser(name, password);
         } finally {
             sqlSession.close();

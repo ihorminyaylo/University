@@ -55,6 +55,16 @@ public class MarkServiceDB {
             sqlSession.close();
         }
     }
+
+    public List<Mark> getAllMarksOfLesson(Lesson lesson) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
+            return markMapper.getAllMarksOfLesson(lesson);
+        } finally {
+            sqlSession.close();
+        }
+    }
     /*public void updateMarkForStudent(Student student, Integer score) {
 
     }*/

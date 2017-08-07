@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
  * Created by AsusIT on 03.08.2017.
  */
 public interface LoginMapper {
-    @Select("SELECT * FROM users")
+    @Select("SELECT * FROM users WHERE name = {#user} and password ={#password}")
     @Results({
             @Result(id = true, column = "id", property = "idUser"),
             @Result(column = "name", property = "nameUser"),

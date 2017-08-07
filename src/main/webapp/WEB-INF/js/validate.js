@@ -9,3 +9,14 @@ function deleteS(b) {
         return r;
     }
 }
+function validateForm() {
+    var c = document.myForm.newFirstName.value;
+    if (c == "") {
+        alert("dasdasdas");
+    }
+    var x = document.forms["infoStudent"]["newFirstName"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+}

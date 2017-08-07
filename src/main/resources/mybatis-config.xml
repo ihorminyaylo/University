@@ -20,5 +20,6 @@
     <mapper class="mapper.SubjectMapper"/>
     <mapper class="mapper.LessonMapper"/>
     <mapper class="mapper.MarkMapper"/>
+    <mapper class="mapper.LoginMapper"/>
   </mappers>
 </configuration>

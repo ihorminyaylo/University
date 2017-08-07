@@ -10,7 +10,11 @@
                 </li>
                 <li><a href="/lessons">Lessons</a>
                 </li>
-                <li><a href="/marks">Import/Export</a>
+                <li><a href="/import_export">Import/Export(JSON)</a>
+                </li>
+                <li><a href="#">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                    </a>
                 </li>
             </ul>
         </div>

@@ -52,7 +52,6 @@ public class EditLessonServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/edit_lesson.jsp");
             dispatcher.forward(req, resp);
         }
-
     }
 
     @Override
