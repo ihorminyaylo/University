@@ -4,6 +4,9 @@
 <head>
     <title>Subjects</title>
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+    <script src="<c:url value="/resources/jquery/external/jquery/jquery.js"/>"></script>
+    <script src="<c:url value="/resources/jquery/jquery-ui.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -21,6 +24,7 @@
                     <th>Subject name</th>
                     <th class="col-md-1"></th>
                     <th class="col-md-1"></th>
+                    <th class="col-md-1"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,24 +33,14 @@
                         <td>${status.count}</td>
                         <td>${subject.subjectName}</td>
                         <td>
+                            <a type="button" href="/view_all_lesson?id=${subject.idSubject}" class="btn btn-primary btn-md">View all lessons</a>
+                        </td>
+                        <td>
                             <a type="button" href="/edit_subject?id=${subject.idSubject}" class="btn btn-primary btn-md">Edit</a>
                         </td>
                         <td>
-                            <script>
-                                function deleteS(b) {
-                                    if (b) {
-                                        alert('This subject has lessons. You can not deleted this student!');
-                                        return false;
-                                    }
-                                    else {
-                                        var r;
-                                        r = confirm('Are you sure you want to remove this subject?');
-                                        return r;
-                                    }
-                                }
-                            </script>
-                            <form action="/delete_subject?id=${subject.idSubject}" method="post" onclick="return deleteS(${subjectHasLesson.get(subject)})">
-                                <input type="submit" value="Delete" class="btn btn-danger btn-md">
+                            <form action="/delete_subject?id=${subject.idSubject}" method="post">
+                                <input type="submit" value="Delete" <c:if test="${subjectHasLesson.get(subject.idSubject)}">disabled data-toggle="tooltip" title="The subject has lesson" data-placement="left"</c:if> class="btn btn-danger btn-md" onclick="return confirm('Are you sure?')">
                             </form>
                         </td>
                     </tr>

@@ -5,9 +5,12 @@ import model.Lesson;
 import model.Mark;
 import model.Student;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by AsusIT on 25.07.2017.
@@ -49,5 +52,9 @@ public class StudentServices {
         if (!mFirstName.matches()) {
             throw new InvalidFormatException("Name isn't correct");
         }
+    }
+
+    public double getAverageMarkForStudent(List<Mark> markList) {
+        return markList.stream().collect(Collectors.averagingDouble(Mark::getScore));
     }
 }

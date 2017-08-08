@@ -13,6 +13,7 @@
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/jquery/external/jquery/jquery.js"/>"></script>
     <script src="<c:url value="/resources/jquery/jquery-ui.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -28,6 +29,7 @@
                 <p class="help-block">The student has all scores of all lessons</p>
             </c:if>
         </div>
+            <h3><span class="label label-info">Average score -  <b>${averageScore}</b></span></h3>
             <table class="table table-condensed">
                 <thead>
                 <tr>
@@ -47,18 +49,12 @@
                         <td>${mark.lesson.subject.subjectName}</td>
                         <td>${mark.score}</td>
                         <td>
-                            <a type="button" href="/marks/edit_score?id=${st.id}" class="btn btn-primary btn-md">Edit Score</a>
+                            <a type="button" href="/marks/edit_score?id=${mark.idMark}" class="btn btn-primary btn-md">Edit Score</a>
                         </td>
                         <td>
-                            <script>
-                                function deleteM(s) {
-                                    var r = confirm(s);
-                                    return r;
-                                }
-                            </script>
                             <form action="/marks/delete_mark?idMark=${mark.idMark}" method="post">
                                 <input type="hidden" id="id" value="${student.id}" name="id">
-                                <input type="submit" value="Delete mark" class="btn btn-danger btn-md" onclick="return deleteM('Are you sure you want to remove this mark?')">
+                                <input type="submit" value="Delete mark" class="btn btn-danger btn-md" onclick="return confirm('Are you sure?')">
                             </form>
                         </td>
                     </tr>

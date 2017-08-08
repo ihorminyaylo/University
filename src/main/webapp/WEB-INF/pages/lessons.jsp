@@ -4,6 +4,9 @@
 <head>
     <title>Lessons</title>
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+    <script src="<c:url value="/resources/jquery/external/jquery/jquery.js"/>"></script>
+    <script src="<c:url value="/resources/jquery/jquery-ui.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -34,19 +37,8 @@
                             <a href="/edit_lesson?id=${lesson.idLesson}" class="btn btn-primary btn-md">Edit</a>
                         </td>
                         <td>
-                            <script>
-                                function deleteLesson(a) {
-                                    if (a) {
-                                        alert("This lesson has marks. You can not deleted this lesson!");
-                                        return false;
-                                    }
-                                    else {
-                                        return confirm('Are you sure you want to remove this lesson?');
-                                    }
-                                }
-                            </script>
                             <form action="/delete_lesson?id=${lesson.idLesson}" method="post">
-                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return deleteLesson(${lessonHasMarks.get(lesson)})">
+                                <input type="submit" value="Delete" <c:if test="${lessonHasMarks.get(lesson.idLesson)}">disabled data-toggle="tooltip" title="The lesson has marks" data-placement="left"</c:if> class="btn btn-danger btn-md" onclick="return confirm('Are you sure?')">
                             </form>
                         </td>
                     </tr>

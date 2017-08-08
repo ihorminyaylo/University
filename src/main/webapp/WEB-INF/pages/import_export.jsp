@@ -13,6 +13,7 @@
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
+<div class="container">
 <h2>IMPORT/EXPORT</h2>
 <div class="input-group">
     <label class="input-group-btn">
@@ -22,7 +23,8 @@
     </label>
     <input type="text" class="form-control" readonly>
 </div>
-<input type="submit" value="EXPORT" onclick="">
-
+<a type="button" href="/import_export" class="btn btn-primary btn-md">Edit</a>
+<input type="submit" value="IMPORT">
+</div>
 </body>
 </html>

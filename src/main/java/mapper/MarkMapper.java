@@ -41,19 +41,7 @@ public interface MarkMapper {
 
     @Delete("DELETE FROM marks WHERE id = #{idMark}")
     void deleteMark(Mark mark);
-    /*@Update("UPDATE marks SET (score) = (score) WHERE id = #{}")
-    public void updateMarkForStudent(Student student, Integer score);*/
 
-    /*List<Mark> getAllMarks();
-
-    @Select("SELECT id_mark, journal.id_lesson, score FROM journal INNER JOIN lessons ON lessons.id_lesson = journal.id_lesson WHERE id_mark = #{id}")
-    @Results({
-        @Result(id = true, column = "id_mark", property = "idMark"),
-        @Result(column = "id_lesson", property = "lesson.idLesson"),
-        @Result(column = "score", property = "score")
-    })
-    Mark getMarkById(Integer id);
-
-    @Insert("INSERT INTO journal(id_lesson, score) VALUES (#{lesson.idLesson}, #{score})")
-    void insertMark(Mark mark);*/
+    @Update("UPDATE marks SET(score) = ('#{score}') WHERE id = #{idMark}")
+    void updateMark(Mark mark);
 }

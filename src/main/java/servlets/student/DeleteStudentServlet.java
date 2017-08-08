@@ -1,4 +1,4 @@
-package servlets;
+package servlets.student;
 
 import model.Mark;
 import servicesDB.MarkServiceDB;

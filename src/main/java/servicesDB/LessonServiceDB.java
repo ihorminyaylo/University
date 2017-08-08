@@ -2,6 +2,8 @@ package servicesDB;
 
 import mapper.LessonMapper;
 import model.Lesson;
+import model.Subject;
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -60,6 +62,16 @@ public class LessonServiceDB {
             LessonMapper lessonMapper = sqlSession.getMapper(LessonMapper.class);
             lessonMapper.deleteLesson(lesson);
             sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public List<Lesson> getAllLessonBySubject(Subject subject) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            LessonMapper lessonMapper = sqlSession.getMapper(LessonMapper.class);
+            return lessonMapper.getAllLessonBySubject(subject);
         } finally {
             sqlSession.close();
         }

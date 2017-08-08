@@ -65,38 +65,18 @@ public class MarkServiceDB {
             sqlSession.close();
         }
     }
-    /*public void updateMarkForStudent(Student student, Integer score) {
 
-    }*/
-
-    /*public List<Mark> getAllMarks() {
+    public void updateMark(Mark mark) throws InvalidFormatException {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {
             MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
-            return markMapper.getAllMarks();
-        } finally {
-            sqlSession.close();
-        }
-    }
-
-    public Mark getMarkById(Integer id) {
-        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
-        try {
-            MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
-            return markMapper.getMarkById(id);
-        } finally {
-            sqlSession.close();
-        }
-    }
-
-    public void createMark(Mark mark) {
-        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
-        try {
-            MarkMapper markMapper = sqlSession.getMapper(MarkMapper.class);
-            markMapper.insertMark(mark);
+            if (mark.getScore() < 0 || mark.getScore() > 100) {
+                throw new InvalidFormatException("This score isn't correct");
+            }
+            markMapper.updateMark(mark);
             sqlSession.commit();
         } finally {
             sqlSession.close();
         }
-    }*/
+    }
 }

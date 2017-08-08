@@ -1,5 +1,6 @@
 import exception.InvalidFormatException;
 import model.*;
+import service.StudentServices;
 import servicesDB.LessonServiceDB;
 import servicesDB.MarkServiceDB;
 import servicesDB.StudentServiceDB;
@@ -15,9 +16,6 @@ import java.util.Map;
  */
 public class Main {
     public static void main(String[] args) throws IOException, InvalidFormatException {
-        /*int idLesson = 12;
-        LessonServiceDB lessonServiceDB = new LessonServiceDB();
-        if ()
-        lessonServiceDB.deleteLesson(lessonServiceDB.getLessonById(idLesson));*/
+        System.out.println(new StudentServiceDB().getCountOfStudent());
     }
 }

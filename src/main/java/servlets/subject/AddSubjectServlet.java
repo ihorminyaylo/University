@@ -1,4 +1,4 @@
-package servlets;
+package servlets.subject;
 
 import exception.InvalidFormatException;
 import model.Student;

@@ -1,4 +1,4 @@
-package servlets;
+package servlets.subject;
 
 import servicesDB.StudentServiceDB;
 import servicesDB.SubjectServiceDB;

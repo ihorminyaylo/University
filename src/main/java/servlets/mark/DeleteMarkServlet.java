@@ -1,4 +1,4 @@
-package servlets;
+package servlets.mark;
 
 import model.Mark;
 import model.Student;

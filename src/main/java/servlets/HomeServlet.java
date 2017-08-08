@@ -3,6 +3,7 @@ package servlets;
 import model.Mark;
 import model.Student;
 import org.apache.ibatis.annotations.Select;
+import service.PaginationService;
 import servicesDB.MarkServiceDB;
 import servicesDB.StudentServiceDB;
 
@@ -21,18 +22,16 @@ import java.util.Map;
 public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        /*int current = Integer.parseInt(req.getParameter("current"));*/
         List<Student> students = new StudentServiceDB().getAllStudents();
         StudentServiceDB studentServiceDB = new StudentServiceDB();
-        Map<Student, Boolean> studentHasMarks = new HashMap<>();
+        Map<Integer, Boolean> studentHasMarks = new HashMap<>();
         for (Student student : students) {
             List<Mark> markList = new MarkServiceDB().getAllMarksOfStudent(student.getId());
-            if (markList.isEmpty()) {
-                studentHasMarks.put(student, false);
-            }
-            else {
-                studentHasMarks.put(student, true);
-            }
+            studentHasMarks.put(student.getId(), !markList.isEmpty());
         }
+        /*PaginationService paginationService = new PaginationService(5, 5, current);
+        req.setAttribute("pagination", paginationService);*/
         req.setAttribute("studentHasMarks", studentHasMarks);
         req.setAttribute("students", students);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/pages/index.jsp");

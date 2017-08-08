@@ -1,4 +1,4 @@
-package servlets;
+package servlets.subject;
 
 import model.Lesson;
 import model.Subject;
@@ -22,7 +22,7 @@ public class SubjectsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Subject> subjects = new SubjectServiceDB().getAllSubjects();
         List<Lesson> lessonList = new LessonServiceDB().getAllLesson();
-        Map<Subject, Boolean> subjectHasLesson = new HashMap<>();
+        Map<Integer, Boolean> subjectHasLesson = new HashMap<>();
         for (Subject subject : subjects) {
             boolean b = false;
             for (Lesson lesson : lessonList) {
@@ -30,7 +30,7 @@ public class SubjectsServlet extends HttpServlet {
                     b = true;
                 }
             }
-            subjectHasLesson.put(subject, b);
+            subjectHasLesson.put(subject.getIdSubject(), b);
             b = false;
         }
         req.setAttribute("subjectHasLesson", subjectHasLesson);

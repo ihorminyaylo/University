@@ -32,4 +32,13 @@ public interface LessonMapper {
 
     @Delete("DELETE FROM lessons WHERE id = #{idLesson}")
     void deleteLesson(Lesson lesson);
+
+    @Select("SELECT lessons.id, subjects.id AS subject_id, subjects.name, date FROM lessons INNER JOIN subjects ON lessons.subject_id = subjects.id WHERE subject_id = #{idSubject}")
+    @Results({
+            @Result(id = true, column = "id", property = "idLesson"),
+            @Result(column = "subject_id", property = "subject.idSubject"),
+            @Result(column = "name", property = "subject.subjectName"),
+            @Result(column = "date", property = "date")
+    })
+    List<Lesson> getAllLessonBySubject(Subject subject);
 }

@@ -7,7 +7,7 @@
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/jquery/external/jquery/jquery.js"/>"></script>
     <script src="<c:url value="/resources/jquery/jquery-ui.min.js"/>"></script>
-    <script src="<c:url value="/WEB-INF/js/validate.js"/>"></script>
+    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -38,24 +38,9 @@
                             <a type="button" href="/edit_student?id=${st.id}" class="btn btn-primary btn-md">Edit</a>
                         </td>
                         <td>
-
-
-                            <script>
-                                function deleteS(b) {
-                                    if (b) {
-                                        alert('This student has marks. You can not deleted this student!');
-                                        return false;
-                                    }
-                                    else {
-                                        return confirm('Are you sure you want to remove this student?');
-                                    }
-                                }
-                            </script>
-
                             <form action="/delete_student?id=${st.id}" method="post">
-                                <input type="submit" value="Delete" class="btn btn-danger btn-md" onclick="return deleteS(${studentHasMarks.get(student)})">
+                                <input type="submit" value="Delete" <c:if test="${studentHasMarks.get(st.id)}">disabled data-toggle="tooltip" title="The student has marks" data-placement="left"</c:if> class="btn btn-danger btn-md" onclick="return confirm('Are you sure?')">
                             </form>
-                            <form></form>
                         </td>
                     </tr>
                 </c:forEach>
@@ -64,6 +49,6 @@
         </c:otherwise>
     </c:choose>
     <p><a type="button" href="/add_student" class="btn btn-primary btn-lg" cem>Add student</a></p>
-</div>
+        <jsp:include page="/WEB-INF/nav.jsp"/>
 </body>
 </html>

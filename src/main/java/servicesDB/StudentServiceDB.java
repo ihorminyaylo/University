@@ -5,6 +5,7 @@ import model.Student;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import service.PaginationService;
 
 import java.util.List;
 
@@ -60,6 +61,26 @@ public class StudentServiceDB {
             sqlSession.commit();
         } finally {
             sqlSession.commit();
+        }
+    }
+
+    public int getCountOfStudent() {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            return studentMapper.getCountOfStudent();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public List<Student> getStudentForPage(int getStart, int getEnd) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            return studentMapper.getStudentForPage(getStart, getEnd);
+        } finally {
+            sqlSession.close();
         }
     }
 }

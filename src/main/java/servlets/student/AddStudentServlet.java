@@ -1,8 +1,9 @@
-package servlets;
+package servlets.student;
 
 import exception.InvalidFormatException;
 import model.Student;
 import servicesDB.StudentServiceDB;
+import servlets.HomeServlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
