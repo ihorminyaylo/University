@@ -3,7 +3,7 @@ package servlets.student;
 import exception.InvalidFormatException;
 import model.Student;
 import servicesDB.StudentServiceDB;
-import servlets.HomeServlet;
+import servlets.StudentsServlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/add_student")
-public class AddStudentServlet extends HomeServlet {
+public class AddStudentServlet extends StudentsServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String newFirstName = req.getParameter("newFirstName");

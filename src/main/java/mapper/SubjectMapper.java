@@ -30,4 +30,7 @@ public interface SubjectMapper {
 
     @Insert("INSERT INTO subjects(name) VALUES (#{subjectName})")
     void insertSubject(Subject subject);
+
+    @Select("SELECT count(*) FROM subjects;")
+    int getCountOfSubject();
 }

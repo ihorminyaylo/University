@@ -33,16 +33,13 @@ public interface StudentMapper {
     void insertStudent(Student student);
 
     @Select("SELECT count(*) FROM students;")
-    /*@Results({
-            @Result(column = "count", property = )
-    })*/
     int getCountOfStudent();
 
-    @Select("SELECT * FROM students LIMIT #{getStart} OFFSET #{getEnd}")
+    @Select("SELECT * FROM students LIMIT #{countShowOfPage} OFFSET #{getStart}")
     @Results({
             @Result(id = true, column = "id", property = "id"),
             @Result(column = "first_name", property = "firstName"),
             @Result(column = "last_name", property = "lastName")
     })
-    List<Student> getStudentForPage(int getStart, int getEnd);
+    List<Student> getStudentForPage(@Param("countShowOfPage")int countShowOfPage, @Param("getStart") int getStart);
 }

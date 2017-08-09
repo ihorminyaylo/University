@@ -74,11 +74,11 @@ public class StudentServiceDB {
         }
     }
 
-    public List<Student> getStudentForPage(int getStart, int getEnd) {
+    public List<Student> getStudentForPage(int countShowOfPage, int getStart) {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {
             StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
-            return studentMapper.getStudentForPage(getStart, getEnd);
+            return studentMapper.getStudentForPage(countShowOfPage, getStart);
         } finally {
             sqlSession.close();
         }

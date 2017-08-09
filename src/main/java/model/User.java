@@ -33,4 +33,14 @@ public class User {
     }
 
     public User() {}
+
+    public User(String nameUser, String password) {
+        this.nameUser = nameUser;
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "name - " + nameUser + "password - " + password;
+    }
 }

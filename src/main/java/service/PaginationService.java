@@ -1,24 +1,18 @@
 package service;
 
+import servicesDB.StudentServiceDB;
+
 public class PaginationService {
-    private int showPages;
-    private int countPages;
+    private int countRowOFPages;
     private int current;
 
-    public int getShowPages() {
-        return showPages;
+
+    public int getCountRowOFPages() {
+        return countRowOFPages;
     }
 
-    public void setShowPages(int showPages) {
-        this.showPages = showPages;
-    }
-
-    public int getCountPages() {
-        return countPages;
-    }
-
-    public void setCountPages(int countPages) {
-        this.countPages = countPages;
+    public void setCountRowOFPages(int countRowOFPages) {
+        this.countRowOFPages = countRowOFPages;
     }
 
     public int getCurrent() {
@@ -29,9 +23,17 @@ public class PaginationService {
         this.current = current;
     }
 
-    public PaginationService(int showPages, int countPages, int current) {
-        this.showPages = showPages;
-        this.countPages = countPages;
+    public PaginationService(int current) {
         this.current = current;
+    }
+    /*public int getCountOfPage() {
+        return new StudentServiceDB().getCountOfStudent();
+    }*/
+    public int getStart() {
+        return getEnd() - countRowOFPages;
+    }
+
+    public int getEnd() {
+        return current*countRowOFPages;
     }
 }

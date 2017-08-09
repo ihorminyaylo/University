@@ -26,6 +26,6 @@ public class DeleteStudentServlet extends HttpServlet{
         else {
             req.setAttribute("studentHasMarks", 0);
         }
-        resp.sendRedirect("/");
+        resp.sendRedirect("/students");
     }
 }

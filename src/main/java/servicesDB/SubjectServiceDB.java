@@ -1,6 +1,7 @@
 package servicesDB;
 
 import exception.InvalidFormatException;
+import mapper.StudentMapper;
 import mapper.SubjectMapper;
 import model.Subject;
 import org.apache.ibatis.jdbc.SQL;
@@ -71,6 +72,16 @@ public class SubjectServiceDB {
             SubjectMapper subjectMapper = sqlSession.getMapper(SubjectMapper.class);
             subjectMapper.deleteSubject(subject);
             sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public int getCountOfSubject() {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            SubjectMapper subjectMapper = sqlSession.getMapper(SubjectMapper.class);
+            return subjectMapper.getCountOfSubject();
         } finally {
             sqlSession.close();
         }
