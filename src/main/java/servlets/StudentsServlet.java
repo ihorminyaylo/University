@@ -21,6 +21,7 @@ import java.util.Map;
 public class StudentsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestLoggingFilter requestLoggingFilter = new RequestLoggingFilter().doFilter(req, resp ,);
         List<Student> students = new StudentServiceDB().getAllStudents();
         StudentServiceDB studentServiceDB = new StudentServiceDB();
         Map<Integer, Boolean> studentHasMarks = new HashMap<>();
