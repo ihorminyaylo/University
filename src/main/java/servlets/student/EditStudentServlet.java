@@ -35,7 +35,7 @@ public class EditStudentServlet extends HttpServlet {
         }
         if (validationFirstName == 1 && validationLastName == 1) {
             studentServiceDB.updateStudent(student);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/students");
         }
         else {
             req.setAttribute("student", student);

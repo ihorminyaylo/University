@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <html>
 <head>
     <title>Export(JSON)</title>
@@ -19,17 +20,7 @@
 </head>
 <body>
 <form action="/export" method="post">
-
+    <input type="submit" value="DUMP">
 </form>
-
-<div class="input-group">
-    <label class="input-group-btn">
-                    <span class="btn btn-primary">
-                        Browse&hellip; <input type="file" style="display: none;" multiple>
-                    </span>
-    </label>
-</div>
-<a type="button" href="/import" class="btn btn-primary btn-md">Import</a>
-<input type="submit" value="IMPORT">
 </body>
 </html>

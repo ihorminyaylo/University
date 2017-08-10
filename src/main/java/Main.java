@@ -19,8 +19,7 @@ import java.util.Map;
  */
 public class Main {
     public static void main(String[] args) throws IOException, InvalidFormatException {
-        List<Student> list = new ArrayList<>();
-        list.addAll(new StudentServiceDB().getAllStudents());
-        JSON.objectToFile("C:\\Users\\iminiatc\\Desktop\\a.txt", list);
+
+        //JSON.objectToFile("C:\\Users\\iminiatc\\Desktop\\a.txt",new StudentServiceDB().getAllStudents());
     }
 }

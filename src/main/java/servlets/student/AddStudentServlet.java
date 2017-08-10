@@ -33,7 +33,7 @@ public class AddStudentServlet extends StudentsServlet {
         }
         if (validationFirstName == 1 && validationLastName == 1) {
             new StudentServiceDB().insertStudent(student);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/students");
         }
         else {
             req.setAttribute("validationFirstName", validationFirstName);

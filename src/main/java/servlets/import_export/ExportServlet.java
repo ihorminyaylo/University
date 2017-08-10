@@ -10,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +22,12 @@ public class ExportServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String file = req.getParameter("file");
+        file = getServletContext().getRealPath("") + File.separator + "data.txt";
         List<Student> list = new ArrayList<>();
         list.addAll(new StudentServiceDB().getAllStudents());
-        JSON.objectToFile(file, list);
+        resp.setContentType("application/octet-stream");
+        resp.setHeader("Content-Disposition", "attachment;filename=studentList.json");
+        FileOutputStream fileOutputStream = JSON.objectToFile(list);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/export.jsp");
         dispatcher.forward(req, resp);
     }

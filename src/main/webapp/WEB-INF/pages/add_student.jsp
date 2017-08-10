@@ -45,7 +45,7 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button id="contactbtn" type="submit" class="btn btn-success">OK</button>
-            <a href="/" type="button" name="cancel" class="btn btn-default">Cancel</a>
+            <a href="/students" type="button" name="cancel" class="btn btn-default">Cancel</a>
         </div>
     </div>
 </form>

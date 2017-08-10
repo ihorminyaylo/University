@@ -10,11 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/AuthenticationFilter")
+@WebFilter(filterName = "/AuthenticationFilter", urlPatterns = {"/*"})
 public class AuthenticationFilter implements Filter {
 
     private ServletContext context;
@@ -24,27 +25,25 @@ public class AuthenticationFilter implements Filter {
         this.context.log("AuthenticationFilter initialized");
     }
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpSession session = request.getSession(false);
+        String loginURI = request.getContextPath() + "/LoginServlet";
+        //String loginURI = request.getContextPath() + "/login";
+        String requestedUri = request.getRequestURI();
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
+        boolean loggedIn = session != null && session.getAttribute("user") != null;
+        boolean loginRequest = requestedUri.equals(loginURI);
 
-        String uri = req.getRequestURI();
-        this.context.log("Requested Resource::"+uri);
-
-        HttpSession session = req.getSession(false);
-
-        if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet"))){
-            this.context.log("Unauthorized access request");
-            res.sendRedirect("login.html");
-        }else{
-            // pass the request along the filter chain
-            chain.doFilter(request, response);
+        if (loggedIn || loginRequest) {
+            filterChain.doFilter(request, response);
+        } else if (requestedUri.matches(".*(css|jpg|png|gif|js)")) {
+            filterChain.doFilter(request, response);
+        } else {
+            response.sendRedirect(loginURI);
         }
-
-
     }
-
 
 
     public void destroy() {

@@ -7,13 +7,13 @@
 
     <ul class="pagination">
         <c:if test="${!(currentPage == 1)}">
-            <li><a href = "/?current=${currentPage - 1}">&laquo;</a></li>
+            <li><a href = "/students?current=${currentPage - 1}">&laquo;</a></li>
         </c:if>
     </ul>
     <ul class="pagination" id="paginationLinks"></ul>
     <ul class="pagination">
         <c:if test="${!(currentPage == totalCount / pageSize)}">
-            <li><a href = "/?current=${currentPage + 1}">&raquo;</a></li>
+            <li><a href = "/students?current=${currentPage + 1}">&raquo;</a></li>
         </c:if>
     </ul>
         <script>
@@ -23,7 +23,7 @@
                 var endPage = (currentPage === countPages) ? currentPage : currentPage + 1;
                 var paginationLinks = $("#paginationLinks");
                 for (var i = startPage; i <= endPage; i++) {
-                    var link = $("<li>").append($("<a></a>").attr("href","/?current=" + i).text(i)).append($("</li>"));
+                    var link = $("<li>").append($("<a></a>").attr("href","/students?current=" + i).text(i)).append($("</li>"));
                     if (currentPage === i) {
                         link.addClass("active");
                     }
@@ -34,6 +34,4 @@
                 generationPaginationLinks(${currentPage}, ${totalCount}, ${pageSize});
             });
         </script>
-    StringBuilder s;
-    s.ad
 </nav>

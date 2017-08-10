@@ -6,6 +6,7 @@
         </div>
         <div class="collapse navbar-collapse navbar-menubuilder">
             <ul class="nav navbar-nav navbar-left">
+                <jsp:include page="LoginSuccess.jsp"/>
                 <li><a href="/subjects">Subjects</a>
                 </li>
                 <li><a href="/lessons">Lessons</a>
@@ -14,9 +15,13 @@
                 </li>
                 <li><a href="/export">Export(JSON)</a>
                 </li>
-                <li><a href="#">
-                        <span class="glyphicon glyphicon-log-out"></span>
-                    </a>
+                <li><a>
+                    <form action="LogoutServlet" method="post">
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </button>
+                    </form>
+                </a>
                 </li>
             </ul>
         </div>

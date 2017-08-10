@@ -1,12 +1,8 @@
 package servlets;
 
-import model.Mark;
-import model.Student;
+import lombok.extern.log4j.Log4j;
 import model.User;
-import org.apache.ibatis.annotations.Select;
-import service.PaginationService;
-import servicesDB.MarkServiceDB;
-import servicesDB.StudentServiceDB;
+
 import servicesDB.UserServiceDB;
 
 import javax.servlet.RequestDispatcher;
@@ -15,11 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
-@WebServlet("/")
+
+@WebServlet("/LoginServlet")
+@Log4j
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final String userID = "admin";
@@ -28,23 +26,39 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
-        // get request parameters for userID and password
+        Logger logger = Logger.getLogger("MyLog");
+        FileHandler fh;
+
+        try {
+
+            // This block configure the logger with handler and formatter
+            fh = new FileHandler("../logs/userslogs.log");
+            logger.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         String name = request.getParameter("user");
         String pwd = request.getParameter("pwd");
 
         User user = new UserServiceDB().getUser(name, pwd);
 
-        if(user.getNameUser().equals(name) && user.getPassword().equals(pwd)){
+        if(user != null){
+            logger.info("Login - User : " + user.getNameUser());
             HttpSession session = request.getSession();
-            session.setAttribute("user", "Pankaj");
-            //setting session to expiry in 30 mins
+            session.setAttribute("user", name);
             session.setMaxInactiveInterval(30*60);
             Cookie userName = new Cookie("user", name);
             userName.setMaxAge(30*60);
             response.addCookie(userName);
             response.sendRedirect("/students");
         }else{
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/pages/login.html");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/pages/index.jsp");
             PrintWriter out= response.getWriter();
             out.println("<font color=red>Either user name or password is wrong.</font>");
             rd.include(request, response);
