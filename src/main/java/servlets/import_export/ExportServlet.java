@@ -21,15 +21,14 @@ import java.util.List;
 public class ExportServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String file = req.getParameter("file");
-        file = getServletContext().getRealPath("") + File.separator + "data.txt";
-        List<Student> list = new ArrayList<>();
-        list.addAll(new StudentServiceDB().getAllStudents());
+        List<Student> list = new StudentServiceDB().getAllStudents();
+
         resp.setContentType("application/octet-stream");
         resp.setHeader("Content-Disposition", "attachment;filename=studentList.json");
-        FileOutputStream fileOutputStream = JSON.objectToFile(list);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/export.jsp");
-        dispatcher.forward(req, resp);
+
+        resp.getOutputStream().println(JSON.objectToJson(list));
+//        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/export.jsp");
+//        dispatcher.forward(req, resp);
     }
 
     @Override

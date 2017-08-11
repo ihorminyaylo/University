@@ -36,6 +36,7 @@ public class StudentsServlet extends HttpServlet {
             currentPage = 1;
         }
         int totalCount = studentServiceDB.getCountOfStudent();
+        req.setAttribute("action", true);
         req.setAttribute("totalCount", totalCount);
         req.setAttribute("pageSize", 3);
         req.setAttribute("currentPage", currentPage);

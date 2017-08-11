@@ -16,10 +16,8 @@ import java.util.List;
  * Created by AsusIT on 24.07.2017.
  */
 public class JSON {
-    public static FileOutputStream objectToFile(List<Student> listOfStudent) throws IOException {
-        FileOutputStream result = new FileOutputStream("studentList");
-        new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(result, listOfStudent);
-        return result;
+    public static String objectToJson(List<Student> listOfStudent) throws IOException {
+        return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(listOfStudent);//.writeValue(result, listOfStudent);
     }
 
     public static List<Student> getListFromFile(String filepath) throws IOException {

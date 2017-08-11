@@ -2,6 +2,7 @@ package servlets.mark;
 
 import model.Mark;
 import model.Student;
+import service.StudentServices;
 import servicesDB.LessonServiceDB;
 import servicesDB.MarkServiceDB;
 import servicesDB.StudentServiceDB;
@@ -29,6 +30,7 @@ public class DeleteMarkServlet extends HttpServlet {
         for (Mark mark : markList) {
             mark.setLesson(new LessonServiceDB().getLessonById(mark.getLesson().getIdLesson()));
         }
+        req.setAttribute("averageScore", new StudentServices().getAverageMarkForStudent(markList));
         req.setAttribute("student", student);
         req.setAttribute("markList", markList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/student_marks.jsp");

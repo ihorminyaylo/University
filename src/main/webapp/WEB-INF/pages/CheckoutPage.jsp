@@ -19,7 +19,7 @@
 %>
 <h3>Hi <%=userName %>, do the checkout.</h3>
 <br>
-<form action="LogoutServlet" method="post">
+<form action="/" method="post">
     <input type="submit" value="Logout" >
 </form>
 </body>

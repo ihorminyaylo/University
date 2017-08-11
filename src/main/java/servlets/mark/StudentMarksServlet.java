@@ -28,6 +28,8 @@ public class StudentMarksServlet extends HttpServlet {
         for (Mark mark : markList) {
             mark.setLesson(new LessonServiceDB().getLessonById(mark.getLesson().getIdLesson()));
         }
+
+        req.setAttribute("action", true);
         req.setAttribute("averageScore", new StudentServices().getAverageMarkForStudent(markList));
         req.setAttribute("student", student);
         req.setAttribute("markList", markList);

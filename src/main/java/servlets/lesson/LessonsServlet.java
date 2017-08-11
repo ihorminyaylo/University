@@ -24,6 +24,7 @@ public class LessonsServlet extends HttpServlet {
         for (Lesson lesson : lessonList) {
             lessonHasMarks.put(lesson.getIdLesson(), !new MarkServiceDB().getAllMarksOfLesson(lesson).isEmpty());
         }
+        req.setAttribute("action", true);
         req.setAttribute("lessonHasMarks", lessonHasMarks);
         req.setAttribute("lessonList", lessonList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/lessons.jsp");

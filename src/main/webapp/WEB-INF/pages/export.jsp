@@ -10,17 +10,18 @@
 <html>
 <head>
     <title>Export(JSON)</title>
-    <link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/but_imp_exp.css"/>">
-
-
-    <link href="<c:url value="/resources/jquery/jquery-ui.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/jquery/external/jquery/jquery.js"/>"></script>
     <script src="<c:url value="/resources/jquery/jquery-ui.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
+    <jsp:include page="LoginSuccess.jsp"/>
 </head>
 <body>
+<jsp:include page="menu.jsp"/>
+<div class="container" align="center">
 <form action="/export" method="post">
-    <input type="submit" value="DUMP">
+    <input type="submit" value="DUMP" class="btn btn-danger btn-md">
 </form>
+</div>
 </body>
 </html>
