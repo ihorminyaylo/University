@@ -58,6 +58,12 @@ public class SubjectServiceDB {
         SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
         try {
             validatorSubject(subject);
+            SubjectServiceDB subjectServiceDB = new SubjectServiceDB();
+            for (Subject subject1 : subjectServiceDB.getAllSubjects()) {
+                if (subject1.getSubjectName().equals(subject.getSubjectName())) {
+                    throw new InvalidFormatException("This date base has this subject name");
+                }
+            }
             SubjectMapper subjectMapper = sqlSession.getMapper(SubjectMapper.class);
             subjectMapper.updateSubject(subject);
             sqlSession.commit();

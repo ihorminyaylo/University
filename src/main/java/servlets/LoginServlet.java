@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(userName);
             response.sendRedirect("/students");
         }else {
-            request.setAttribute("valid", false);
+            request.setAttribute("valid", true);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/pages/index.jsp");
             PrintWriter out= response.getWriter();
             /*out.println("<font color=red>Either user name or password is wrong.</font>");*/
@@ -48,12 +48,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*HttpSession session = request.getSession();
-        if(session != null){
-            response.sendRedirect("/students");
-            } else {*/
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/pages/index.jsp");
-            dispatcher.forward(request, response);
+        request.setAttribute("valid", false);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/pages/index.jsp");
+        dispatcher.forward(request, response);
 
     }
 }

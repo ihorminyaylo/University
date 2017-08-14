@@ -12,13 +12,13 @@
 </head>
 <body>
 <div class = "container">
-    <div class="wrapper <c:if test="${!valid}">has-error</c:if>">
+    <div class="wrapper <c:if test="${valid}">has-error</c:if>">
         <form action="/" method="post" name="Login_Form" class="form-signin">
             <h3 class="form-signin-heading" align="center">Welcome to the best project!</h3>
             <hr class="colorgraph"><br>
-            <input type="text" class="form-control" name="user" placeholder="Username" required="" autofocus="" />
-            <input type="password" class="form-control" name="pwd" placeholder="Password" required=""/>
-            <c:if test="${!valid}">
+            <input type="text" class="form-control" name="user" placeholder="Username" required="" autofocus="" /><br>
+            <input type="password" class="form-control" name="pwd" placeholder="Password" required=""/><br>
+            <c:if test="${valid}">
                 <p class="help-block">The user's date isn't correct</p>
             </c:if>
             <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>
